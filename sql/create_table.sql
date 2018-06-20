@@ -1,0 +1,22 @@
+CREATE TABLE `prospectus`(
+    info_code varchar(32) NOT NULL DEFAULT '',
+    notice_date varchar(32) NOT NULL DEFAULT '',
+    attach_size varchar(32) NOT NULL DEFAULT '',
+    end_date varchar(32) NOT NULL DEFAULT '',
+    notice_title varchar(255) NOT NULL DEFAULT '',
+    eutime varchar(32) NOT NULL DEFAULT '',
+    security_variety_code varchar(32) NOT NULL DEFAULT '',
+    security_type_code varchar(32) NOT NULL DEFAULT '',
+    security_code varchar(16) NOT NULL DEFAULT '',
+    security_full_name varchar(32) NOT NULL DEFAULT '',
+    security_short_name varchar(32) NOT NULL DEFAULT '',
+    security_type varchar(32) NOT NULL DEFAULT '',
+    trade_market_code varchar(32) NOT NULL DEFAULT '',
+    trade_market varchar(32) NOT NULL DEFAULT '',
+    listing_stat varchar(32) NOT NULL DEFAULT '',
+    company_code varchar(32) NOT NULL DEFAULT '',
+    url varchar(255) NOT NULL DEFAULT '',
+    direct_url varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`info_code`),
+  KEY index_security_code (`security_code`)
+)ENGINE=INNODB DEFAULT CHARSET=utf8mb4;

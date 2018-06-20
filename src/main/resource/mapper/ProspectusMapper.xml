@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.moondev.spider.mapper.ProspectusMapper">
+
+    <resultMap id="prospectusMap" type="cn.moondev.spider.model.Prospectus">
+        <id column="info_code" property="infoCode"/>
+        <result column="notice_date" property="noticeDate"/>
+        <result column="attach_size" property="attachSize"/>
+        <result column="end_date" property="endDate"/>
+        <result column="notice_title" property="noticeTitle"/>
+        <result column="eutime" property="eutime"/>
+        <result column="security_variety_code" property="securityVarietyCode"/>
+        <result column="security_type_code" property="securityTypeCode"/>
+        <result column="security_code" property="securityCode"/>
+        <result column="security_full_name" property="securityFullName"/>
+        <result column="security_short_name" property="securityShortName"/>
+        <result column="security_type" property="securityType"/>
+        <result column="trade_market_code" property="tradeMarketCode"/>
+        <result column="trade_market" property="tradeMarket"/>
+        <result column="listing_stat" property="listingStat"/>
+        <result column="company_code" property="companyCode"/>
+        <result column="url" property="url"/>
+        <result column="direct_url" property="directUrl"/>
+    </resultMap>
+
+    <insert id="upsertProspectusByInfoCode">
+        INSERT INTO prospectus(
+          info_code,
+          notice_date,
+          attach_size,
+          end_date,
+          notice_title,
+          eutime,
+          security_variety_code,
+          security_type_code,
+          security_code,
+          security_full_name,
+          security_short_name,
+          security_type,
+          trade_market_code,
+          trade_market,
+          listing_stat,
+          company_code,
+          url,
+          direct_url
+        ) VALUES (
+            #{item.infoCode},
+            #{item.noticeDate},
+            #{item.attachSize},
+            #{item.endDate},
+            #{item.noticeTitle},
+            #{item.eutime},
+            #{item.securityVarietyCode},
+            #{item.securityTypeCode},
+            #{item.securityCode},
+            #{item.securityFullName},
+            #{item.securityShortName},
+            #{item.securityType},
+            #{item.tradeMarketCode},
+            #{item.tradeMarket},
+            #{item.listingStat},
+            #{item.companyCode},
+            #{item.url},
+            #{item.directUrl}
+        )ON DUPLICATE KEY UPDATE
+            notice_date = VALUES(notice_date),
+            attach_size = VALUES(attach_size),
+            end_date = VALUES(end_date),
+            notice_title = VALUES(notice_title),
+            eutime = VALUES(eutime),
+            security_variety_code = VALUES(security_variety_code),
+            security_type_code = VALUES(security_type_code),
+            security_code = VALUES(security_code),
+            security_full_name = VALUES(security_full_name),
+            security_short_name = VALUES(security_short_name),
+            security_type = VALUES(security_type),
+            trade_market_code = VALUES(trade_market_code),
+            trade_market = VALUES(trade_market),
+            listing_stat = VALUES(listing_stat),
+            company_code = VALUES(company_code),
+            url = VALUES(url),
+            direct_url = VALUES(direct_url)
+    </insert>
+</mapper>
