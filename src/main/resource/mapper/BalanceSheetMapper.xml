@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.moondev.spider.mapper.BalanceSheetMapper">
+
+    <resultMap id="prospectusMap" type="cn.moondev.spider.model.BalanceSheet">
+        <id column="id" property="id"/>
+        <result column="date_type" property="dateType"/>
+        <result column="security_code" property="securityCode"/>
+        <result column="report_date" property="reportDate"/>
+        <result column="monetary_fund" property="monetaryFund"/>
+        <result column="settlement_provision" property="settlementProvision"/>
+        <result column="lend_fund" property="lendFund"/>
+        <result column="fair_value_financial_asset" property="fairValueFinancialAsset"/>
+        <result column="trade_financial_asset" property="tradeFinancialAsset"/>
+        <result column="define_fair_value_financial_asset" property="defineFairValueFinancialAsset"/>
+        <result column="bill_receivable" property="billReceivable"/>
+        <result column="accounts_receivable" property="accountsReceivable"/>
+        <result column="prepayments" property="prepayments"/>
+        <result column="premiums_receivable" property="premiumsReceivable"/>
+        <result column="accounts_receivable_reinsurance" property="accountsReceivableReinsurance"/>
+        <result column="receivable_reinsurance_contract_reserve" property="receivableReinsuranceContractReserve"/>
+        <result column="interest_receivable" property="interestReceivable"/>
+        <result column="dividend_receivable" property="dividendReceivable"/>
+        <result column="other_receivable" property="otherReceivable"/>
+        <result column="receivable_export_tax_rebate" property="receivableExportTaxRebate"/>
+        <result column="subsidy_receivable" property="subsidyReceivable"/>
+        <result column="internal_receivable" property="internalReceivable"/>
+        <result column="buy_back_resale_financial_asset" property="buyBackResaleFinancialAsset"/>
+        <result column="inventory" property="inventory"/>
+        <result column="assets_held_for_sale" property="assetsHeldForSale"/>
+        <result column="non_liquid_asset_one_year" property="nonLiquidAssetOneYear"/>
+        <result column="other_liquid_asset" property="otherLiquidAsset"/>
+        <result column="sum_liquid_asset" property="sumLiquidAsset"/>
+        <result column="loan_advances" property="loanAdvances"/>
+        <result column="saleable_financial_asset" property="saleableFinancialAsset"/>
+        <result column="held_maturity_investment" property="heldMaturityInvestment"/>
+        <result column="long_term_receivable" property="longTermReceivable"/>
+        <result column="long_term_equity_investment" property="longTermEquityInvestment"/>
+        <result column="estate_investment" property="estateInvestment"/>
+        <result column="fixed_asset" property="fixedAsset"/>
+        <result column="construction_in_progress" property="constructionInProgress"/>
+        <result column="construction_material" property="constructionMaterial"/>
+        <result column="liquidate_fixed_asset" property="liquidateFixedAsset"/>
+        <result column="product_biology_asset" property="productBiologyAsset"/>
+        <result column="oil_gas_asset" property="oilGasAsset"/>
+        <result column="intangible_asset" property="intangibleAsset"/>
+        <result column="developexp" property="developexp"/>
+        <result column="goodwill" property="goodwill"/>
+        <result column="long_term_defer_asset" property="longTermDeferAsset"/>
+        <result column="deferred_income_tax_asset" property="deferredIncomeTaxAsset"/>
+        <result column="other_non_liquid_asset" property="otherNonLiquidAsset"/>
+        <result column="sum_non_liquid_asset" property="sumNonLiquidAsset"/>
+        <result column="sum_asset" property="sumAsset"/>
+        <result column="short_term_loan" property="shortTermLoan"/>
+        <result column="loan_from_center_bank" property="loanFromCenterBank"/>
+        <result column="deposit" property="deposit"/>
+        <result column="loan_from_other_bank" property="loanFromOtherBank"/>
+        <result column="fair_value_financial_liabilities" property="fairValueFinancialLiabilities"/>
+        <result column="trade_financial_liabilities" property="tradeFinancialLiabilities"/>
+        <result column="define_fair_value_financial_liabilities" property="defineFairValueFinancialLiabilities"/>
+        <result column="bill_payable" property="billPayable"/>
+        <result column="accounts_payable" property="accountsPayable"/>
+        <result column="advances_received" property="advancesReceived"/>
+        <result column="financial_assets_sold_for_repurchase" property="financialAssetsSoldForRepurchase"/>
+        <result column="fee_commission_payable" property="feeCommissionPayable"/>
+        <result column="salary_payable" property="salaryPayable"/>
+        <result column="tax_payable" property="taxPayable"/>
+        <result column="interest_ined" property="interestIned"/>
+        <result column="dividends_payable" property="dividendsPayable"/>
+        <result column="accounts_payable_reinsurance" property="accountsPayableReinsurance"/>
+        <result column="internal_payable" property="internalPayable"/>
+        <result column="other_payable" property="otherPayable"/>
+        <result column="anticipate_cash_liabilities" property="anticipateCashLiabilities"/>
+        <result column="reserve_fund_for_insurance_contracts" property="reserveFundForInsuranceContracts"/>
+        <result column="acting_trading_securities" property="actingTradingSecurities"/>
+        <result column="acting_underwriting_securities" property="actingUnderwritingSecurities"/>
+        <result column="deferred_income_one_year" property="deferredIncomeOneYear"/>
+        <result column="short_term_bonds_payable" property="shortTermBondsPayable"/>
+        <result column="liabilities_for_sale" property="liabilitiesForSale"/>
+        <result column="non_cash_liabilities_one_year" property="nonCashLiabilitiesOneYear"/>
+        <result column="other_cash_liabilities" property="otherCashLiabilities"/>
+        <result column="sum_cash_liabilities" property="sumCashLiabilities"/>
+        <result column="long_term_loan" property="longTermLoan"/>
+        <result column="bond_payable" property="bondPayable"/>
+        <result column="prefer_stock_bond" property="preferStockBond"/>
+        <result column="sustain_stock_bond" property="sustainStockBond"/>
+        <result column="long_term_account_payable" property="longTermAccountPayable"/>
+        <result column="long_term_salary_payable" property="longTermSalaryPayable"/>
+        <result column="account_payable_special_funds" property="accountPayableSpecialFunds"/>
+        <result column="estimated_liabilities" property="estimatedLiabilities"/>
+        <result column="deferred_income" property="deferredIncome"/>
+        <result column="deferred_tax_liability" property="deferredTaxLiability"/>
+        <result column="other_non_current_liabilities" property="otherNonCurrentLiabilities"/>
+        <result column="sum_non_current_liabilities" property="sumNonCurrentLiabilities"/>
+        <result column="sum_liabilities" property="sumLiabilities"/>
+        <result column="paid_in_capital" property="paidInCapital"/>
+        <result column="other_equity" property="otherEquity"/>
+        <result column="preferredtock" property="preferredtock"/>
+        <result column="sustainable_debt" property="sustainableDebt"/>
+        <result column="other_equity_other" property="otherEquityOther"/>
+        <result column="capital_reserve" property="capitalReserve"/>
+        <result column="inventory_share" property="inventoryShare"/>
+        <result column="special_reserve" property="specialReserve"/>
+        <result column="surplus_reserve" property="surplusReserve"/>
+        <result column="general_risk_prepare" property="generalRiskPrepare"/>
+        <result column="unconfirm_investment_loss" property="unconfirmInvestmentLoss"/>
+        <result column="undistributed_profit" property="undistributedProfit"/>
+        <result column="plancashdivi" property="plancashdivi"/>
+        <result column="diffconversionfc" property="diffconversionfc"/>
+        <result column="sum_parent_equity" property="sumParentEquity"/>
+        <result column="minority_equity" property="minorityEquity"/>
+        <result column="sumshequity" property="sumshequity"/>
+        <result column="sumliabshequity" property="sumliabshequity"/>
+    </resultMap>
+
+    <insert id="upsert">
+        INSERT INTO t_balance_sheet(
+        security_code,
+        report_date,
+        date_type,
+        monetary_fund,
+        settlement_provision,
+        lend_fund,
+        fair_value_financial_asset,
+        trade_financial_asset,
+        define_fair_value_financial_asset,
+        bill_receivable,
+        accounts_receivable,
+        prepayments,
+        premiums_receivable,
+        accounts_receivable_reinsurance,
+        receivable_reinsurance_contract_reserve,
+        interest_receivable,
+        dividend_receivable,
+        other_receivable,
+        receivable_export_tax_rebate,
+        subsidy_receivable,
+        internal_receivable,
+        buy_back_resale_financial_asset,
+        inventory,
+        assets_held_for_sale,
+        non_liquid_asset_one_year,
+        other_liquid_asset,
+        sum_liquid_asset,
+        loan_advances,
+        saleable_financial_asset,
+        held_maturity_investment,
+        long_term_receivable,
+        long_term_equity_investment,
+        estate_investment,
+        fixed_asset,
+        construction_in_progress,
+        construction_material,
+        liquidate_fixed_asset,
+        product_biology_asset,
+        oil_gas_asset,
+        intangible_asset,
+        developexp,
+        goodwill,
+        long_term_defer_asset,
+        deferred_income_tax_asset,
+        other_non_liquid_asset,
+        sum_non_liquid_asset,
+        sum_asset,
+        short_term_loan,
+        loan_from_center_bank,
+        deposit,
+        loan_from_other_bank,
+        fair_value_financial_liabilities,
+        trade_financial_liabilities,
+        define_fair_value_financial_liabilities,
+        bill_payable,
+        accounts_payable,
+        advances_received,
+        financial_assets_sold_for_repurchase,
+        fee_commission_payable,
+        salary_payable,
+        tax_payable,
+        interest_ined,
+        dividends_payable,
+        accounts_payable_reinsurance,
+        internal_payable,
+        other_payable,
+        anticipate_cash_liabilities,
+        reserve_fund_for_insurance_contracts,
+        acting_trading_securities,
+        acting_underwriting_securities,
+        deferred_income_one_year,
+        short_term_bonds_payable,
+        liabilities_for_sale,
+        non_cash_liabilities_one_year,
+        other_cash_liabilities,
+        sum_cash_liabilities,
+        long_term_loan,
+        bond_payable,
+        prefer_stock_bond,
+        sustain_stock_bond,
+        long_term_account_payable,
+        long_term_salary_payable,
+        account_payable_special_funds,
+        estimated_liabilities,
+        deferred_income,
+        deferred_tax_liability,
+        other_non_current_liabilities,
+        sum_non_current_liabilities,
+        sum_liabilities,
+        paid_in_capital,
+        other_equity,
+        preferredtock,
+        sustainable_debt,
+        other_equity_other,
+        capital_reserve,
+        inventory_share,
+        special_reserve,
+        surplus_reserve,
+        general_risk_prepare,
+        unconfirm_investment_loss,
+        undistributed_profit,
+        plancashdivi,
+        diffconversionfc,
+        sum_parent_equity,
+        minority_equity,
+        sumshequity,
+        sumliabshequity
+) VALUES (
+        #{item.securityCode},
+        #{item.reportDate},
+        #{item.dateType},
+        #{item.monetaryFund},
+        #{item.settlementProvision},
+        #{item.lendFund},
+        #{item.fairValueFinancialAsset},
+        #{item.tradeFinancialAsset},
+        #{item.defineFairValueFinancialAsset},
+        #{item.billReceivable},
+        #{item.accountsReceivable},
+        #{item.prepayments},
+        #{item.premiumsReceivable},
+        #{item.accountsReceivableReinsurance},
+        #{item.receivableReinsuranceContractReserve},
+        #{item.interestReceivable},
+        #{item.dividendReceivable},
+        #{item.otherReceivable},
+        #{item.receivableExportTaxRebate},
+        #{item.subsidyReceivable},
+        #{item.internalReceivable},
+        #{item.buyBackResaleFinancialAsset},
+        #{item.inventory},
+        #{item.assetsHeldForSale},
+        #{item.nonLiquidAssetOneYear},
+        #{item.otherLiquidAsset},
+        #{item.sumLiquidAsset},
+        #{item.loanAdvances},
+        #{item.saleableFinancialAsset},
+        #{item.heldMaturityInvestment},
+        #{item.longTermReceivable},
+        #{item.longTermEquityInvestment},
+        #{item.estateInvestment},
+        #{item.fixedAsset},
+        #{item.constructionInProgress},
+        #{item.constructionMaterial},
+        #{item.liquidateFixedAsset},
+        #{item.productBiologyAsset},
+        #{item.oilGasAsset},
+        #{item.intangibleAsset},
+        #{item.developexp},
+        #{item.goodwill},
+        #{item.longTermDeferAsset},
+        #{item.deferredIncomeTaxAsset},
+        #{item.otherNonLiquidAsset},
+        #{item.sumNonLiquidAsset},
+        #{item.sumAsset},
+        #{item.shortTermLoan},
+        #{item.loanFromCenterBank},
+        #{item.deposit},
+        #{item.loanFromOtherBank},
+        #{item.fairValueFinancialLiabilities},
+        #{item.tradeFinancialLiabilities},
+        #{item.defineFairValueFinancialLiabilities},
+        #{item.billPayable},
+        #{item.accountsPayable},
+        #{item.advancesReceived},
+        #{item.financialAssetsSoldForRepurchase},
+        #{item.feeCommissionPayable},
+        #{item.salaryPayable},
+        #{item.taxPayable},
+        #{item.interestIned},
+        #{item.dividendsPayable},
+        #{item.accountsPayableReinsurance},
+        #{item.internalPayable},
+        #{item.otherPayable},
+        #{item.anticipateCashLiabilities},
+        #{item.reserveFundForInsuranceContracts},
+        #{item.actingTradingSecurities},
+        #{item.actingUnderwritingSecurities},
+        #{item.deferredIncomeOneYear},
+        #{item.shortTermBondsPayable},
+        #{item.liabilitiesForSale},
+        #{item.nonCashLiabilitiesOneYear},
+        #{item.otherCashLiabilities},
+        #{item.sumCashLiabilities},
+        #{item.longTermLoan},
+        #{item.bondPayable},
+        #{item.preferStockBond},
+        #{item.sustainStockBond},
+        #{item.longTermAccountPayable},
+        #{item.longTermSalaryPayable},
+        #{item.accountPayableSpecialFunds},
+        #{item.estimatedLiabilities},
+        #{item.deferredIncome},
+        #{item.deferredTaxLiability},
+        #{item.otherNonCurrentLiabilities},
+        #{item.sumNonCurrentLiabilities},
+        #{item.sumLiabilities},
+        #{item.paidInCapital},
+        #{item.otherEquity},
+        #{item.preferredtock},
+        #{item.sustainableDebt},
+        #{item.otherEquityOther},
+        #{item.capitalReserve},
+        #{item.inventoryShare},
+        #{item.specialReserve},
+        #{item.surplusReserve},
+        #{item.generalRiskPrepare},
+        #{item.unconfirmInvestmentLoss},
+        #{item.undistributedProfit},
+        #{item.plancashdivi},
+        #{item.diffconversionfc},
+        #{item.sumParentEquity},
+        #{item.minorityEquity},
+        #{item.sumshequity},
+        #{item.sumliabshequity}
+)ON DUPLICATE KEY UPDATE
+        monetary_fund = VALUES(monetary_fund),
+        settlement_provision = VALUES(settlement_provision),
+        lend_fund = VALUES(lend_fund),
+        fair_value_financial_asset = VALUES(fair_value_financial_asset),
+        trade_financial_asset = VALUES(trade_financial_asset),
+        define_fair_value_financial_asset = VALUES(define_fair_value_financial_asset),
+        bill_receivable = VALUES(bill_receivable),
+        accounts_receivable = VALUES(accounts_receivable),
+        prepayments = VALUES(prepayments),
+        premiums_receivable = VALUES(premiums_receivable),
+        accounts_receivable_reinsurance = VALUES(accounts_receivable_reinsurance),
+        receivable_reinsurance_contract_reserve = VALUES(receivable_reinsurance_contract_reserve),
+        interest_receivable = VALUES(interest_receivable),
+        dividend_receivable = VALUES(dividend_receivable),
+        other_receivable = VALUES(other_receivable),
+        receivable_export_tax_rebate = VALUES(receivable_export_tax_rebate),
+        subsidy_receivable = VALUES(subsidy_receivable),
+        internal_receivable = VALUES(internal_receivable),
+        buy_back_resale_financial_asset = VALUES(buy_back_resale_financial_asset),
+        inventory = VALUES(inventory),
+        assets_held_for_sale = VALUES(assets_held_for_sale),
+        non_liquid_asset_one_year = VALUES(non_liquid_asset_one_year),
+        other_liquid_asset = VALUES(other_liquid_asset),
+        sum_liquid_asset = VALUES(sum_liquid_asset),
+        loan_advances = VALUES(loan_advances),
+        saleable_financial_asset = VALUES(saleable_financial_asset),
+        held_maturity_investment = VALUES(held_maturity_investment),
+        long_term_receivable = VALUES(long_term_receivable),
+        long_term_equity_investment = VALUES(long_term_equity_investment),
+        estate_investment = VALUES(estate_investment),
+        fixed_asset = VALUES(fixed_asset),
+        construction_in_progress = VALUES(construction_in_progress),
+        construction_material = VALUES(construction_material),
+        liquidate_fixed_asset = VALUES(liquidate_fixed_asset),
+        product_biology_asset = VALUES(product_biology_asset),
+        oil_gas_asset = VALUES(oil_gas_asset),
+        intangible_asset = VALUES(intangible_asset),
+        developexp = VALUES(developexp),
+        goodwill = VALUES(goodwill),
+        long_term_defer_asset = VALUES(long_term_defer_asset),
+        deferred_income_tax_asset = VALUES(deferred_income_tax_asset),
+        other_non_liquid_asset = VALUES(other_non_liquid_asset),
+        sum_non_liquid_asset = VALUES(sum_non_liquid_asset),
+        sum_asset = VALUES(sum_asset),
+        short_term_loan = VALUES(short_term_loan),
+        loan_from_center_bank = VALUES(loan_from_center_bank),
+        deposit = VALUES(deposit),
+        loan_from_other_bank = VALUES(loan_from_other_bank),
+        fair_value_financial_liabilities = VALUES(fair_value_financial_liabilities),
+        trade_financial_liabilities = VALUES(trade_financial_liabilities),
+        define_fair_value_financial_liabilities = VALUES(define_fair_value_financial_liabilities),
+        bill_payable = VALUES(bill_payable),
+        accounts_payable = VALUES(accounts_payable),
+        advances_received = VALUES(advances_received),
+        financial_assets_sold_for_repurchase = VALUES(financial_assets_sold_for_repurchase),
+        fee_commission_payable = VALUES(fee_commission_payable),
+        salary_payable = VALUES(salary_payable),
+        tax_payable = VALUES(tax_payable),
+        interest_ined = VALUES(interest_ined),
+        dividends_payable = VALUES(dividends_payable),
+        accounts_payable_reinsurance = VALUES(accounts_payable_reinsurance),
+        internal_payable = VALUES(internal_payable),
+        other_payable = VALUES(other_payable),
+        anticipate_cash_liabilities = VALUES(anticipate_cash_liabilities),
+        reserve_fund_for_insurance_contracts = VALUES(reserve_fund_for_insurance_contracts),
+        acting_trading_securities = VALUES(acting_trading_securities),
+        acting_underwriting_securities = VALUES(acting_underwriting_securities),
+        deferred_income_one_year = VALUES(deferred_income_one_year),
+        short_term_bonds_payable = VALUES(short_term_bonds_payable),
+        liabilities_for_sale = VALUES(liabilities_for_sale),
+        non_cash_liabilities_one_year = VALUES(non_cash_liabilities_one_year),
+        other_cash_liabilities = VALUES(other_cash_liabilities),
+        sum_cash_liabilities = VALUES(sum_cash_liabilities),
+        long_term_loan = VALUES(long_term_loan),
+        bond_payable = VALUES(bond_payable),
+        prefer_stock_bond = VALUES(prefer_stock_bond),
+        sustain_stock_bond = VALUES(sustain_stock_bond),
+        long_term_account_payable = VALUES(long_term_account_payable),
+        long_term_salary_payable = VALUES(long_term_salary_payable),
+        account_payable_special_funds = VALUES(account_payable_special_funds),
+        estimated_liabilities = VALUES(estimated_liabilities),
+        deferred_income = VALUES(deferred_income),
+        deferred_tax_liability = VALUES(deferred_tax_liability),
+        other_non_current_liabilities = VALUES(other_non_current_liabilities),
+        sum_non_current_liabilities = VALUES(sum_non_current_liabilities),
+        sum_liabilities = VALUES(sum_liabilities),
+        paid_in_capital = VALUES(paid_in_capital),
+        other_equity = VALUES(other_equity),
+        preferredtock = VALUES(preferredtock),
+        sustainable_debt = VALUES(sustainable_debt),
+        other_equity_other = VALUES(other_equity_other),
+        capital_reserve = VALUES(capital_reserve),
+        inventory_share = VALUES(inventory_share),
+        special_reserve = VALUES(special_reserve),
+        surplus_reserve = VALUES(surplus_reserve),
+        general_risk_prepare = VALUES(general_risk_prepare),
+        unconfirm_investment_loss = VALUES(unconfirm_investment_loss),
+        undistributed_profit = VALUES(undistributed_profit),
+        plancashdivi = VALUES(plancashdivi),
+        diffconversionfc = VALUES(diffconversionfc),
+        sum_parent_equity = VALUES(sum_parent_equity),
+        minority_equity = VALUES(minority_equity),
+        sumshequity = VALUES(sumshequity),
+        sumliabshequity = VALUES(sumliabshequity)
+    </insert>
+</mapper>

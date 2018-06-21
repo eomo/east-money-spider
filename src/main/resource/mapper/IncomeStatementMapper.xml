@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.moondev.spider.mapper.IncomeStatementMapper">
+
+    <resultMap id="prospectusMap" type="cn.moondev.spider.model.IncomeStatement">
+        <id column="info_code" property="infoCode"/>
+        <result column="date_type" property="dateType"/>
+        <result column="security_code" property="securityCode"/>
+        <result column="report_date" property="reportDate"/>
+        <result column="gross_revenue" property="grossRevenue"/>
+        <result column="operating_receipt" property="operatingReceipt"/>
+        <result column="interest_revenue" property="interestRevenue"/>
+        <result column="premium_earned" property="premiumEarned"/>
+        <result column="commreve" property="commreve"/>
+        <result column="other_revenue" property="otherRevenue"/>
+        <result column="total_operating_cost" property="totalOperatingCost"/>
+        <result column="operating_cost" property="operatingCost"/>
+        <result column="interest_exp" property="interestExp"/>
+        <result column="commission_exp" property="commissionExp"/>
+        <result column="rd_exp" property="rdExp"/>
+        <result column="surrender_premium" property="surrenderPremium"/>
+        <result column="net_indemnity_exp" property="netIndemnityExp"/>
+        <result column="net_contract_reserve" property="netContractReserve"/>
+        <result column="expenditures_dividend_policy" property="expendituresDividendPolicy"/>
+        <result column="amortized_reinsurance_exp" property="amortizedReinsuranceExp"/>
+        <result column="other_exp" property="otherExp"/>
+        <result column="sales_tax" property="salesTax"/>
+        <result column="sales_exp" property="salesExp"/>
+        <result column="manage_exp" property="manageExp"/>
+        <result column="financial_exp" property="financialExp"/>
+        <result column="asset_value_loss" property="assetValueLoss"/>
+        <result column="fair_value_income" property="fairValueIncome"/>
+        <result column="investment_income" property="investmentIncome"/>
+        <result column="investment_join_income" property="investmentJoinIncome"/>
+        <result column="exchange_income" property="exchangeIncome"/>
+        <result column="operating_profit" property="operatingProfit"/>
+        <result column="non_business_revenue" property="nonBusinessRevenue"/>
+        <result column="non_current_asset_revenue" property="nonCurrentAssetRevenue"/>
+        <result column="non_business_exp" property="nonBusinessExp"/>
+        <result column="non_current_asset_loss" property="nonCurrentAssetLoss"/>
+        <result column="sum_profit" property="sumProfit"/>
+        <result column="income_tax" property="incomeTax"/>
+        <result column="combined_net_profit" property="combinedNetProfit"/>
+        <result column="net_profit" property="netProfit"/>
+        <result column="parent_net_profit" property="parentNetProfit"/>
+        <result column="minority_income" property="minorityIncome"/>
+        <result column="net_profit_after_loss" property="netProfitAfterLoss"/>
+        <result column="basic_eps" property="basicEps"/>
+        <result column="diluted_eps" property="dilutedEps"/>
+        <result column="oci" property="oci"/>
+        <result column="parent_company_oci" property="parentCompanyOCI"/>
+        <result column="minority_shareholder_oci" property="minorityShareholderOCI"/>
+        <result column="sumci" property="sumci"/>
+        <result column="parent_compay_ci" property="parentCompayCI"/>
+        <result column="minority_shareholder_ci" property="minorityShareholderCI"/>
+    </resultMap>
+
+    <insert id="upsert">
+        INSERT INTO t_income_statement(
+        date_type,
+        security_code,
+        report_date,
+        gross_revenue,
+        operating_receipt,
+        interest_revenue,
+        premium_earned,
+        commreve,
+        other_revenue,
+        total_operating_cost,
+        operating_cost,
+        interest_exp,
+        commission_exp,
+        rd_exp,
+        surrender_premium,
+        net_indemnity_exp,
+        net_contract_reserve,
+        expenditures_dividend_policy,
+        amortized_reinsurance_exp,
+        other_exp,
+        sales_tax,
+        sales_exp,
+        manage_exp,
+        financial_exp,
+        asset_value_loss,
+        fair_value_income,
+        investment_income,
+        investment_join_income,
+        exchange_income,
+        operating_profit,
+        non_business_revenue,
+        non_current_asset_revenue,
+        non_business_exp,
+        non_current_asset_loss,
+        sum_profit,
+        income_tax,
+        combined_net_profit,
+        net_profit,
+        parent_net_profit,
+        minority_income,
+        net_profit_after_loss,
+        basic_eps,
+        diluted_eps,
+        oci,
+        parent_company_oci,
+        minority_shareholder_oci,
+        sumci,
+        parent_compay_ci,
+        minority_shareholder_ci,
+    ) VALUES (
+        #{item.securityCode},
+        #{item.reportDate},
+        #{item.dateType},
+        #{item.grossRevenue},
+        #{item.operatingReceipt},
+        #{item.interestRevenue},
+        #{item.premiumEarned},
+        #{item.commreve},
+        #{item.otherRevenue},
+        #{item.totalOperatingCost},
+        #{item.operatingCost},
+        #{item.interestExp},
+        #{item.commissionExp},
+        #{item.rdExp},
+        #{item.surrenderPremium},
+        #{item.netIndemnityExp},
+        #{item.netContractReserve},
+        #{item.expendituresDividendPolicy},
+        #{item.amortizedReinsuranceExp},
+        #{item.otherExp},
+        #{item.salesTax},
+        #{item.salesExp},
+        #{item.manageExp},
+        #{item.financialExp},
+        #{item.assetValueLoss},
+        #{item.fairValueIncome},
+        #{item.investmentIncome},
+        #{item.investmentJoinIncome},
+        #{item.exchangeIncome},
+        #{item.operatingProfit},
+        #{item.nonBusinessRevenue},
+        #{item.nonCurrentAssetRevenue},
+        #{item.nonBusinessExp},
+        #{item.nonCurrentAssetLoss},
+        #{item.sumProfit},
+        #{item.incomeTax},
+        #{item.combinedNetProfit},
+        #{item.netProfit},
+        #{item.parentNetProfit},
+        #{item.minorityIncome},
+        #{item.netProfitAfterLoss},
+        #{item.basicEps},
+        #{item.dilutedEps},
+        #{item.oci},
+        #{item.parentCompanyOCI},
+        #{item.minorityShareholderOCI},
+        #{item.sumci},
+        #{item.parentCompayCI},
+        #{item.minorityShareholderCI}
+)ON DUPLICATE KEY UPDATE
+        gross_revenue = VALUES(gross_revenue),
+        operating_receipt = VALUES(operating_receipt),
+        interest_revenue = VALUES(interest_revenue),
+        premium_earned = VALUES(premium_earned),
+        commreve = VALUES(commreve),
+        other_revenue = VALUES(other_revenue),
+        total_operating_cost = VALUES(total_operating_cost),
+        operating_cost = VALUES(operating_cost),
+        interest_exp = VALUES(interest_exp),
+        commission_exp = VALUES(commission_exp),
+        rd_exp = VALUES(rd_exp),
+        surrender_premium = VALUES(surrender_premium),
+        net_indemnity_exp = VALUES(net_indemnity_exp),
+        net_contract_reserve = VALUES(net_contract_reserve),
+        expenditures_dividend_policy = VALUES(expenditures_dividend_policy),
+        amortized_reinsurance_exp = VALUES(amortized_reinsurance_exp),
+        other_exp = VALUES(other_exp),
+        sales_tax = VALUES(sales_tax),
+        sales_exp = VALUES(sales_exp),
+        manage_exp = VALUES(manage_exp),
+        financial_exp = VALUES(financial_exp),
+        asset_value_loss = VALUES(asset_value_loss),
+        fair_value_income = VALUES(fair_value_income),
+        investment_income = VALUES(investment_income),
+        investment_join_income = VALUES(investment_join_income),
+        exchange_income = VALUES(exchange_income),
+        operating_profit = VALUES(operating_profit),
+        non_business_revenue = VALUES(non_business_revenue),
+        non_current_asset_revenue = VALUES(non_current_asset_revenue),
+        non_business_exp = VALUES(non_business_exp),
+        non_current_asset_loss = VALUES(non_current_asset_loss),
+        sum_profit = VALUES(sum_profit),
+        income_tax = VALUES(income_tax),
+        combined_net_profit = VALUES(combined_net_profit),
+        net_profit = VALUES(net_profit),
+        parent_net_profit = VALUES(parent_net_profit),
+        minority_income = VALUES(minority_income),
+        net_profit_after_loss = VALUES(net_profit_after_loss),
+        basic_eps = VALUES(basic_eps),
+        diluted_eps = VALUES(diluted_eps),
+        oci = VALUES(oci),
+        parent_company_oci = VALUES(parent_company_oci),
+        minority_shareholder_oci = VALUES(minority_shareholder_oci),
+        sumci = VALUES(sumci),
+        parent_compay_ci = VALUES(parent_compay_ci),
+        minority_shareholder_ci = VALUES(minority_shareholder_ci)
+    </insert>
+</mapper>

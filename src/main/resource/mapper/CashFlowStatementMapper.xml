@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.moondev.spider.mapper.CashFlowStatementMapper">
+
+    <resultMap id="prospectusMap" type="cn.moondev.spider.model.CashFlowStatement">
+        <id column="id" property="id"/>
+        <result column="date_type" property="dateType"/>
+        <result column="security_code" property="securityCode"/>
+        <result column="report_date" property="reportDate"/>
+        <result column="cash_in_sale_good_labour_service" property="cashInSaleGoodLabourService"/>
+        <result column="net_increase_in_deposit" property="netIncreaseInDeposit"/>
+        <result column="net_increase_in_loan_from_bank" property="netIncreaseInLoanFromBank"/>
+        <result column="net_increase_in_loan_from_bank_institution" property="netIncreaseInLoanFromBankInstitution"/>
+        <result column="cash_in_original_insurance_contract" property="cashInOriginalInsuranceContract"/>
+        <result column="net_cash_in_reinsure" property="netCashInReinsure"/>
+        <result column="net_increase_deposit_investment" property="netIncreaseDepositInvestment"/>
+        <result column="net_increase_in_financial_asset" property="netIncreaseInFinancialAsset"/>
+        <result column="cash_in_interest_commission" property="cashInInterestCommission"/>
+        <result column="net_increase_borrow_fund" property="netIncreaseBorrowFund"/>
+        <result column="net_reduce_loan_advances" property="netReduceLoanAdvances"/>
+        <result column="net_increase_buyback_foud" property="netIncreaseBuybackFoud"/>
+        <result column="tax_return" property="taxReturn"/>
+        <result column="cash_in_other_business" property="cashInOtherBusiness"/>
+        <result column="sum_cash_revenue" property="sumCashRevenue"/>
+        <result column="buy_good_labour_service_payable" property="buyGoodLabourServicePayable"/>
+        <result column="net_increase_in_loan_advances" property="netIncreaseInLoanAdvances"/>
+        <result column="net_increase_in_deposit_in_bank" property="netIncreaseInDepositInBank"/>
+        <result column="insurance_contract_payable" property="insuranceContractPayable"/>
+        <result column="interest_commission_payable" property="interestCommissionPayable"/>
+        <result column="dividend_payable" property="dividendPayable"/>
+        <result column="employee_payable" property="employeePayable"/>
+        <result column="tax_payable" property="taxPayable"/>
+        <result column="other_business_payable" property="otherBusinessPayable"/>
+        <result column="sum_cash_payable" property="sumCashPayable"/>
+        <result column="net_cash_in_business" property="netCashInBusiness"/>
+        <result column="cash_by_investment" property="cashByInvestment"/>
+        <result column="cash_by_investment_received" property="cashByInvestmentReceived"/>
+        <result column="cash_by_dispose_asset" property="cashByDisposeAsset"/>
+        <result column="cash_by_dispose_subsidiary" property="cashByDisposeSubsidiary"/>
+        <result column="cash_by_reduce_pledge_and_deposit" property="cashByReducePledgeAndDeposit"/>
+        <result column="cash_by_other_investment" property="cashByOtherInvestment"/>
+        <result column="sum_investment_revenue" property="sumInvestmentRevenue"/>
+        <result column="buy_asset_payable" property="buyAssetPayable"/>
+        <result column="investment_payable" property="investmentPayable"/>
+        <result column="net_increase_in_pledge_loan" property="netIncreaseInPledgeLoan"/>
+        <result column="get_subsidiary_payable" property="getSubsidiaryPayable"/>
+        <result column="cash_by_add_pledge_and_deposit" property="cashByAddPledgeAndDeposit"/>
+        <result column="other_investment_payable" property="otherInvestmentPayable"/>
+        <result column="sum_investment_payable" property="sumInvestmentPayable"/>
+        <result column="net_cash_in_investment" property="netCashInInvestment"/>
+        <result column="cash_by_accept_investment" property="cashByAcceptInvestment"/>
+        <result column="cash_by_accept_subsidiary" property="cashByAcceptSubsidiary"/>
+        <result column="cash_by_loan" property="cashByLoan"/>
+        <result column="cash_by_issuance_of_bonds" property="cashByIssuanceOfBonds"/>
+        <result column="cash_by_other_financing" property="cashByOtherFinancing"/>
+        <result column="sum_financing_revenue" property="sumFinancingRevenue"/>
+        <result column="repayment_debt_payable" property="repaymentDebtPayable"/>
+        <result column="dividend_profit_interest_payable" property="dividendProfitInterestPayable"/>
+        <result column="subsidiary_payable" property="subsidiaryPayable"/>
+        <result column="buy_subsidiary_payable" property="buySubsidiaryPayable"/>
+        <result column="other_financing_payable" property="otherFinancingPayable"/>
+        <result column="subsidiary_reduce_capital" property="subsidiaryReduceCapital"/>
+        <result column="sum_financing_payable" property="sumFinancingPayable"/>
+        <result column="net_cash_in_financing" property="netCashInFinancing"/>
+        <result column="effect_exchange_rate" property="effectExchangeRate"/>
+        <result column="net_increase_in_cash_equi" property="netIncreaseInCashEqui"/>
+        <result column="cash_in_period_beginning" property="cashInPeriodBeginning"/>
+        <result column="cash_in_period_ending" property="cashInPeriodEnding"/>
+    </resultMap>
+
+    <insert id="upsertProspectusByInfoCode">
+        INSERT INTO t_cash_flow_statement(
+            security_code,
+            report_date,
+            date_type,
+            cash_in_sale_good_labour_service,
+            net_increase_in_deposit,
+            net_increase_in_loan_from_bank,
+            net_increase_in_loan_from_bank_institution,
+            cash_in_original_insurance_contract,
+            net_cash_in_reinsure,
+            net_increase_deposit_investment,
+            net_increase_in_financial_asset,
+            cash_in_interest_commission,
+            net_increase_borrow_fund,
+            net_reduce_loan_advances,
+            net_increase_buyback_foud,
+            tax_return,
+            cash_in_other_business,
+            sum_cash_revenue,
+            buy_good_labour_service_payable,
+            net_increase_in_loan_advances,
+            net_increase_in_deposit_in_bank,
+            insurance_contract_payable,
+            interest_commission_payable,
+            dividend_payable,
+            employee_payable,
+            tax_payable,
+            other_business_payable,
+            sum_cash_payable,
+            net_cash_in_business,
+            cash_by_investment,
+            cash_by_investment_received,
+            cash_by_dispose_asset,
+            cash_by_dispose_subsidiary,
+            cash_by_reduce_pledge_and_deposit,
+            cash_by_other_investment,
+            sum_investment_revenue,
+            buy_asset_payable,
+            investment_payable,
+            net_increase_in_pledge_loan,
+            get_subsidiary_payable,
+            cash_by_add_pledge_and_deposit,
+            other_investment_payable,
+            sum_investment_payable,
+            net_cash_in_investment,
+            cash_by_accept_investment,
+            cash_by_accept_subsidiary,
+            cash_by_loan,
+            cash_by_issuance_of_bonds,
+            cash_by_other_financing,
+            sum_financing_revenue,
+            repayment_debt_payable,
+            dividend_profit_interest_payable,
+            subsidiary_payable,
+            buy_subsidiary_payable,
+            other_financing_payable,
+            subsidiary_reduce_capital,
+            sum_financing_payable,
+            net_cash_in_financing,
+            effect_exchange_rate,
+            net_increase_in_cash_equi,
+            cash_in_period_beginning,
+            cash_in_period_ending
+        ) VALUES (
+            #{item.securityCode},
+            #{item.reportDate},
+            #{item.dateType},
+            #{item.cashInSaleGoodLabourService},
+            #{item.netIncreaseInDeposit},
+            #{item.netIncreaseInLoanFromBank},
+            #{item.netIncreaseInLoanFromBankInstitution},
+            #{item.cashInOriginalInsuranceContract},
+            #{item.netCashInReinsure},
+            #{item.netIncreaseDepositInvestment},
+            #{item.netIncreaseInFinancialAsset},
+            #{item.cashInInterestCommission},
+            #{item.netIncreaseBorrowFund},
+            #{item.netReduceLoanAdvances},
+            #{item.netIncreaseBuybackFoud},
+            #{item.taxReturn},
+            #{item.cashInOtherBusiness},
+            #{item.sumCashRevenue},
+            #{item.buyGoodLabourServicePayable},
+            #{item.netIncreaseInLoanAdvances},
+            #{item.netIncreaseInDepositInBank},
+            #{item.insuranceContractPayable},
+            #{item.interestCommissionPayable},
+            #{item.dividendPayable},
+            #{item.employeePayable},
+            #{item.taxPayable},
+            #{item.otherBusinessPayable},
+            #{item.sumCashPayable},
+            #{item.netCashInBusiness},
+            #{item.cashByInvestment},
+            #{item.cashByInvestmentReceived},
+            #{item.cashByDisposeAsset},
+            #{item.cashByDisposeSubsidiary},
+            #{item.cashByReducePledgeAndDeposit},
+            #{item.cashByOtherInvestment},
+            #{item.sumInvestmentRevenue},
+            #{item.buyAssetPayable},
+            #{item.investmentPayable},
+            #{item.netIncreaseInPledgeLoan},
+            #{item.getSubsidiaryPayable},
+            #{item.cashByAddPledgeAndDeposit},
+            #{item.otherInvestmentPayable},
+            #{item.sumInvestmentPayable},
+            #{item.netCashInInvestment},
+            #{item.cashByAcceptInvestment},
+            #{item.cashByAcceptSubsidiary},
+            #{item.cashByLoan},
+            #{item.cashByIssuanceOfBonds},
+            #{item.cashByOtherFinancing},
+            #{item.sumFinancingRevenue},
+            #{item.repaymentDebtPayable},
+            #{item.dividendProfitInterestPayable},
+            #{item.subsidiaryPayable},
+            #{item.buySubsidiaryPayable},
+            #{item.otherFinancingPayable},
+            #{item.subsidiaryReduceCapital},
+            #{item.sumFinancingPayable},
+            #{item.netCashInFinancing},
+            #{item.effectExchangeRate},
+            #{item.netIncreaseInCashEqui},
+            #{item.cashInPeriodBeginning},
+            #{item.cashInPeriodEnding}
+    )ON DUPLICATE KEY UPDATE
+            cash_in_sale_good_labour_service = VALUES(cash_in_sale_good_labour_service),
+            net_increase_in_deposit = VALUES(net_increase_in_deposit),
+            net_increase_in_loan_from_bank = VALUES(net_increase_in_loan_from_bank),
+            net_increase_in_loan_from_bank_institution = VALUES(net_increase_in_loan_from_bank_institution),
+            cash_in_original_insurance_contract = VALUES(cash_in_original_insurance_contract),
+            net_cash_in_reinsure = VALUES(net_cash_in_reinsure),
+            net_increase_deposit_investment = VALUES(net_increase_deposit_investment),
+            net_increase_in_financial_asset = VALUES(net_increase_in_financial_asset),
+            cash_in_interest_commission = VALUES(cash_in_interest_commission),
+            net_increase_borrow_fund = VALUES(net_increase_borrow_fund),
+            net_reduce_loan_advances = VALUES(net_reduce_loan_advances),
+            net_increase_buyback_foud = VALUES(net_increase_buyback_foud),
+            tax_return = VALUES(tax_return),
+            cash_in_other_business = VALUES(cash_in_other_business),
+            sum_cash_revenue = VALUES(sum_cash_revenue),
+            buy_good_labour_service_payable = VALUES(buy_good_labour_service_payable),
+            net_increase_in_loan_advances = VALUES(net_increase_in_loan_advances),
+            net_increase_in_deposit_in_bank = VALUES(net_increase_in_deposit_in_bank),
+            insurance_contract_payable = VALUES(insurance_contract_payable),
+            interest_commission_payable = VALUES(interest_commission_payable),
+            dividend_payable = VALUES(dividend_payable),
+            employee_payable = VALUES(employee_payable),
+            tax_payable = VALUES(tax_payable),
+            other_business_payable = VALUES(other_business_payable),
+            sum_cash_payable = VALUES(sum_cash_payable),
+            net_cash_in_business = VALUES(net_cash_in_business),
+            cash_by_investment = VALUES(cash_by_investment),
+            cash_by_investment_received = VALUES(cash_by_investment_received),
+            cash_by_dispose_asset = VALUES(cash_by_dispose_asset),
+            cash_by_dispose_subsidiary = VALUES(cash_by_dispose_subsidiary),
+            cash_by_reduce_pledge_and_deposit = VALUES(cash_by_reduce_pledge_and_deposit),
+            cash_by_other_investment = VALUES(cash_by_other_investment),
+            sum_investment_revenue = VALUES(sum_investment_revenue),
+            buy_asset_payable = VALUES(buy_asset_payable),
+            investment_payable = VALUES(investment_payable),
+            net_increase_in_pledge_loan = VALUES(net_increase_in_pledge_loan),
+            get_subsidiary_payable = VALUES(get_subsidiary_payable),
+            cash_by_add_pledge_and_deposit = VALUES(cash_by_add_pledge_and_deposit),
+            other_investment_payable = VALUES(other_investment_payable),
+            sum_investment_payable = VALUES(sum_investment_payable),
+            net_cash_in_investment = VALUES(net_cash_in_investment),
+            cash_by_accept_investment = VALUES(cash_by_accept_investment),
+            cash_by_accept_subsidiary = VALUES(cash_by_accept_subsidiary),
+            cash_by_loan = VALUES(cash_by_loan),
+            cash_by_issuance_of_bonds = VALUES(cash_by_issuance_of_bonds),
+            cash_by_other_financing = VALUES(cash_by_other_financing),
+            sum_financing_revenue = VALUES(sum_financing_revenue),
+            repayment_debt_payable = VALUES(repayment_debt_payable),
+            dividend_profit_interest_payable = VALUES(dividend_profit_interest_payable),
+            subsidiary_payable = VALUES(subsidiary_payable),
+            buy_subsidiary_payable = VALUES(buy_subsidiary_payable),
+            other_financing_payable = VALUES(other_financing_payable),
+            subsidiary_reduce_capital = VALUES(subsidiary_reduce_capital),
+            sum_financing_payable = VALUES(sum_financing_payable),
+            net_cash_in_financing = VALUES(net_cash_in_financing),
+            effect_exchange_rate = VALUES(effect_exchange_rate),
+            net_increase_in_cash_equi = VALUES(net_increase_in_cash_equi),
+            cash_in_period_beginning = VALUES(cash_in_period_beginning),
+            cash_in_period_ending = VALUES(cash_in_period_ending)
+    </insert>
+</mapper>

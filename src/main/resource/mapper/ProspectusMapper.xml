@@ -24,7 +24,7 @@
     </resultMap>
 
     <insert id="upsertProspectusByInfoCode">
-        INSERT INTO prospectus(
+        INSERT INTO t_prospectus(
           info_code,
           notice_date,
           attach_size,
