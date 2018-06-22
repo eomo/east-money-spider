@@ -1,4 +1,4 @@
-package cn.moondev.spider.handler;
+package cn.moondev.spider.spider.handler;
 
 import cn.moondev.framework.provider.okhttp3.ResponseHandler;
 import cn.moondev.spider.model.Prospectus;

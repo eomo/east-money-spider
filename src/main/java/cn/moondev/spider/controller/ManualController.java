@@ -1,5 +1,6 @@
 package cn.moondev.spider.controller;
 
+import cn.moondev.spider.service.FinancialService;
 import cn.moondev.spider.service.ProspectusService;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,14 @@ public class ManualController {
 
     @Autowired
     private ProspectusService prospectusService;
+    @Autowired
+    private FinancialService financialService;
+
+    @RequestMapping(value = "/finanical", method = RequestMethod.GET)
+    public String financial(@RequestParam(required = false) String stock) {
+        financialService.spider(stock);
+        return "success";
+    }
 
     @RequestMapping(value = "/prospectus", method = RequestMethod.GET)
     public String prospectus(@RequestParam(required = false) String stock) {

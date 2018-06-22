@@ -4,6 +4,7 @@
 
     <resultMap id="prospectusMap" type="cn.moondev.spider.model.IncomeStatement">
         <id column="info_code" property="infoCode"/>
+        <result column="stock_type" property="stockType"/>
         <result column="date_type" property="dateType"/>
         <result column="security_code" property="securityCode"/>
         <result column="report_date" property="reportDate"/>
@@ -60,6 +61,7 @@
         date_type,
         security_code,
         report_date,
+        stock_type,
         gross_revenue,
         operating_receipt,
         interest_revenue,
@@ -110,6 +112,7 @@
         #{item.securityCode},
         #{item.reportDate},
         #{item.dateType},
+        #{item.stockType},
         #{item.grossRevenue},
         #{item.operatingReceipt},
         #{item.interestRevenue},

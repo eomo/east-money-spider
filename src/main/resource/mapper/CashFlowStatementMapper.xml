@@ -4,6 +4,7 @@
 
     <resultMap id="prospectusMap" type="cn.moondev.spider.model.CashFlowStatement">
         <id column="id" property="id"/>
+        <result column="stock_type" property="stockType"/>
         <result column="date_type" property="dateType"/>
         <result column="security_code" property="securityCode"/>
         <result column="report_date" property="reportDate"/>
@@ -73,6 +74,7 @@
             security_code,
             report_date,
             date_type,
+            stock_type,
             cash_in_sale_good_labour_service,
             net_increase_in_deposit,
             net_increase_in_loan_from_bank,
@@ -136,6 +138,7 @@
             #{item.securityCode},
             #{item.reportDate},
             #{item.dateType},
+            #{item.stockType},
             #{item.cashInSaleGoodLabourService},
             #{item.netIncreaseInDeposit},
             #{item.netIncreaseInLoanFromBank},

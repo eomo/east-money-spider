@@ -16,7 +16,7 @@ public interface ProspectusMapper {
      * @param stockCode 股票代码
      * @return
      */
-    @Select("select * from prospectus where security_code=${stockCode}")
+    @Select("select * from t_prospectus where security_code=${stockCode}")
     List<Prospectus> getProspectusByStockCode(@Param("stockCode") String stockCode);
 
     /**
@@ -25,7 +25,7 @@ public interface ProspectusMapper {
      * @param infoCode 主键
      * @return
      */
-    @Select("select * from prospectus where info_code=${infoCode} limit 1")
+    @Select("select * from t_prospectus where info_code=${infoCode} limit 1")
     Prospectus getProspectusByInfoCode(@Param("infoCode") String infoCode);
 
     /**

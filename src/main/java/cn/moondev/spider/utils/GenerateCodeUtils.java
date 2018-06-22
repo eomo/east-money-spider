@@ -19,11 +19,27 @@ public class GenerateCodeUtils {
 //        insertSQL("CashFlowStatement");
 //        insertSQL("IncomeStatement");
 //        createTableSQL("BalanceSheet");
-        createTableSQL("CashFlowStatement");
-
-        createTableSQL("IncomeStatement");
+//        createTableSQL("CashFlowStatement");
+//        createTableSQL("IncomeStatement");
+//        getterAndSetter("BalanceSheet");
+//        getterAndSetter("CashFlowStatement");
+        getterAndSetter("IncomeStatement");
     }
 
+    public static void getterAndSetter(String javaName) throws Exception {
+        List<ModelClassInfo> cdxList = getCDXList(javaName);
+        for (ModelClassInfo cdx : cdxList) {
+            String str = "this." + cdx.field + " = NumberUtils.convertCent(json.getString(\""+cdx.jsonFiled+"\"));";
+            System.out.println(str);
+        }
+    }
+
+    /**
+     * 建表语句
+     *
+     * @param javaName
+     * @throws Exception
+     */
     public static void createTableSQL(String javaName) throws Exception {
         List<ModelClassInfo> cdxList = getCDXList(javaName);
         StringBuilder sb = new StringBuilder();
@@ -36,30 +52,6 @@ public class GenerateCodeUtils {
         sb.append("        UNIQUE KEY unique_index_code_date(`security_code`,`report_date`,`date_type`)").append("\n");
         sb.append(")ENGINE=INNODB DEFAULT CHARSET=utf8mb4;");
         System.out.println(sb.toString());
-
-
-//        CREATE TABLE `t_prospectus`(
-//                info_code varchar(32) NOT NULL DEFAULT '',
-//                notice_date varchar(32) NOT NULL DEFAULT '',
-//                attach_size varchar(32) NOT NULL DEFAULT '',
-//                end_date varchar(32) NOT NULL DEFAULT '',
-//                notice_title varchar(255) NOT NULL DEFAULT '',
-//                eutime varchar(32) NOT NULL DEFAULT '',
-//                security_variety_code varchar(32) NOT NULL DEFAULT '',
-//                security_type_code varchar(32) NOT NULL DEFAULT '',
-//                security_code varchar(16) NOT NULL DEFAULT '',
-//                security_full_name varchar(32) NOT NULL DEFAULT '',
-//                security_short_name varchar(32) NOT NULL DEFAULT '',
-//                security_type varchar(32) NOT NULL DEFAULT '',
-//                trade_market_code varchar(32) NOT NULL DEFAULT '',
-//                trade_market varchar(32) NOT NULL DEFAULT '',
-//                listing_stat varchar(32) NOT NULL DEFAULT '',
-//                company_code varchar(32) NOT NULL DEFAULT '',
-//                url varchar(255) NOT NULL DEFAULT '',
-//                direct_url varchar(255) NOT NULL DEFAULT '',
-//                PRIMARY KEY (`info_code`),
-//                KEY index_security_code (`security_code`)
-//)ENGINE=INNODB DEFAULT CHARSET=utf8mb4;
     }
 
     /**
@@ -76,12 +68,12 @@ public class GenerateCodeUtils {
         sb.append(") VALUES (");
         for (ModelClassInfo cdx : cdxList) {
             sb.append("        ");
-            sb.append(String.format("#{item.%s},",cdx.field)).append("\n");
+            sb.append(String.format("#{item.%s},", cdx.field)).append("\n");
         }
         sb.append(")ON DUPLICATE KEY UPDATE");
         for (ModelClassInfo cdx : cdxList) {
             sb.append("        ");
-            sb.append(String.format("%s = VALUES(%s),",cdx.mysqlField,cdx.mysqlField)).append("\n");
+            sb.append(String.format("%s = VALUES(%s),", cdx.mysqlField, cdx.mysqlField)).append("\n");
         }
         System.out.println(sb.toString());
     }
@@ -94,17 +86,18 @@ public class GenerateCodeUtils {
         List<ModelClassInfo> cdxList = getCDXList(javaName);
         for (ModelClassInfo cdx : cdxList) {
             String format = "<result column=\"%s\" property=\"%s\"/>";
-            System.out.println(String.format(format,cdx.mysqlField,cdx.field));
+            System.out.println(String.format(format, cdx.mysqlField, cdx.field));
         }
     }
 
 
-    public static List<ModelClassInfo> getCDXList(String javaName) throws Exception{
-        File file = new File("C:\\WorkSpace\\github.com\\east-money-spider\\src\\main\\java\\cn\\moondev\\spider\\model\\"+javaName+".java");
+    public static List<ModelClassInfo> getCDXList(String javaName) throws Exception {
+        File file = new File("/Users/Moon/WorkSpace/github.com/east-money-spider/src/main/java/cn/moondev/spider/model/" + javaName + ".java");
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line;
         String content = "";
         String field = "";
+        String jsonField = "";
         List<ModelClassInfo> cdxList = Lists.newArrayList();
         while ((line = reader.readLine()) != null) {
             // 获取注释
@@ -118,8 +111,11 @@ public class GenerateCodeUtils {
                     field = line.substring(16);
                 }
             }
-            if (!Strings.isNullOrEmpty(content) && !Strings.isNullOrEmpty(field)) {
-                cdxList.add(new ModelClassInfo(field.substring(0,field.length()-1),content));
+            if (line.contains("@JSONField")) {
+                jsonField = line.substring(23).trim();
+            }
+            if (!Strings.isNullOrEmpty(content) && !Strings.isNullOrEmpty(field) && !Strings.isNullOrEmpty(jsonField)) {
+                cdxList.add(new ModelClassInfo(field.substring(0, field.length() - 1),jsonField.substring(0,jsonField.length()-2), content));
                 content = "";
                 field = "";
             }
@@ -137,7 +133,7 @@ public class GenerateCodeUtils {
         for (char ch : chars) {
             if (Character.isLowerCase(ch)) {
                 sb.append(ch);
-            } else if (Character.isUpperCase(ch)){
+            } else if (Character.isUpperCase(ch)) {
                 sb.append("_").append(Character.toLowerCase(ch));
             }
         }

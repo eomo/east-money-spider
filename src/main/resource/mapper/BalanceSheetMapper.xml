@@ -4,6 +4,7 @@
 
     <resultMap id="prospectusMap" type="cn.moondev.spider.model.BalanceSheet">
         <id column="id" property="id"/>
+        <result column="stock_type" property="stockType"/>
         <result column="date_type" property="dateType"/>
         <result column="security_code" property="securityCode"/>
         <result column="report_date" property="reportDate"/>
@@ -118,6 +119,7 @@
         security_code,
         report_date,
         date_type,
+        stock_type,
         monetary_fund,
         settlement_provision,
         lend_fund,
@@ -226,6 +228,7 @@
         #{item.securityCode},
         #{item.reportDate},
         #{item.dateType},
+        #{item.stockType},
         #{item.monetaryFund},
         #{item.settlementProvision},
         #{item.lendFund},

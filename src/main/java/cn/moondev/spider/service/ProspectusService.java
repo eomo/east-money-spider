@@ -3,10 +3,9 @@ package cn.moondev.spider.service;
 import cn.moondev.framework.model.Format;
 import cn.moondev.framework.provider.okhttp3.OkHttpOperations;
 import cn.moondev.framework.provider.okhttp3.OkHttpRequest;
-import cn.moondev.spider.handler.ProspectusHandler;
 import cn.moondev.spider.mapper.ProspectusMapper;
 import cn.moondev.spider.model.Prospectus;
-import com.alibaba.fastjson.JSONObject;
+import cn.moondev.spider.spider.handler.ProspectusHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,10 +44,9 @@ public class ProspectusService {
         request.requestParams.put("StockCode", stockCode);
         request.requestParams.put("CodeType", "1");
         request.requestParams.put("PageIndex", "1");
-        request.requestParams.put("FirstNodeType","2");
-        request.requestParams.put("SecNodeType","2");
-        request.requestParams.put("PageSize", Integer.MAX_VALUE);
-        request.method = "GET";
+        request.requestParams.put("FirstNodeType", "2");
+        request.requestParams.put("SecNodeType", "2");
+        request.requestParams.put("PageSize", "50");
         request.requestFormat = Format.PLAIN;
         return okHttpOperations.syncRequest(request, new ProspectusHandler());
     }
