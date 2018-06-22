@@ -16,6 +16,9 @@ public class StringUtils {
      * @return
      */
     public static String convertReportDate(String reportDate) {
+        if (reportDate.contains("-")) {
+            return reportDate;
+        }
         reportDate = reportDate.substring(0, reportDate.length() - 8);
         LocalDate date = LocalDate.parse(reportDate, DateTimeFormatter.ofPattern("yyyy/M/d"));
         return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));

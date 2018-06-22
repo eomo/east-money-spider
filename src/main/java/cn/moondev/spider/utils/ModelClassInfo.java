@@ -7,7 +7,7 @@ public class ModelClassInfo {
     public String content;
     public String jsonFiled;
 
-    public ModelClassInfo(String field, String jsonFiled,String content) {
+    public ModelClassInfo(String field,String content) {
         this.field = field;
         this.jsonFiled = jsonFiled;
         this.content = content;

@@ -4,10 +4,10 @@
 
     <resultMap id="prospectusMap" type="cn.moondev.spider.model.BalanceSheet">
         <id column="id" property="id"/>
-        <result column="stock_type" property="stockType"/>
-        <result column="date_type" property="dateType"/>
         <result column="security_code" property="securityCode"/>
         <result column="report_date" property="reportDate"/>
+        <result column="date_type" property="dateType"/>
+        <result column="stock_type" property="stockType"/>
         <result column="monetary_fund" property="monetaryFund"/>
         <result column="settlement_provision" property="settlementProvision"/>
         <result column="lend_fund" property="lendFund"/>
@@ -32,6 +32,9 @@
         <result column="non_liquid_asset_one_year" property="nonLiquidAssetOneYear"/>
         <result column="other_liquid_asset" property="otherLiquidAsset"/>
         <result column="sum_liquid_asset" property="sumLiquidAsset"/>
+        <result column="agent_asset" property="agentAsset"/>
+        <result column="liquid_asset_other" property="liquidAssetOther"/>
+        <result column="liquid_asset_balance" property="liquidAssetBalance"/>
         <result column="loan_advances" property="loanAdvances"/>
         <result column="saleable_financial_asset" property="saleableFinancialAsset"/>
         <result column="held_maturity_investment" property="heldMaturityInvestment"/>
@@ -52,6 +55,10 @@
         <result column="other_non_liquid_asset" property="otherNonLiquidAsset"/>
         <result column="sum_non_liquid_asset" property="sumNonLiquidAsset"/>
         <result column="sum_asset" property="sumAsset"/>
+        <result column="non_liquid_asset_other" property="nonLiquidAssetOther"/>
+        <result column="non_liquid_asset_balance" property="nonLiquidAssetBalance"/>
+        <result column="asset_other" property="assetOther"/>
+        <result column="asset_balance" property="assetBalance"/>
         <result column="short_term_loan" property="shortTermLoan"/>
         <result column="loan_from_center_bank" property="loanFromCenterBank"/>
         <result column="deposit" property="deposit"/>
@@ -81,6 +88,9 @@
         <result column="non_cash_liabilities_one_year" property="nonCashLiabilitiesOneYear"/>
         <result column="other_cash_liabilities" property="otherCashLiabilities"/>
         <result column="sum_cash_liabilities" property="sumCashLiabilities"/>
+        <result column="agent_liabilities" property="agentLiabilities"/>
+        <result column="cash_liabilities_other" property="cashLiabilitiesOther"/>
+        <result column="cash_liabilities_balance" property="cashLiabilitiesBalance"/>
         <result column="long_term_loan" property="longTermLoan"/>
         <result column="bond_payable" property="bondPayable"/>
         <result column="prefer_stock_bond" property="preferStockBond"/>
@@ -94,6 +104,8 @@
         <result column="other_non_current_liabilities" property="otherNonCurrentLiabilities"/>
         <result column="sum_non_current_liabilities" property="sumNonCurrentLiabilities"/>
         <result column="sum_liabilities" property="sumLiabilities"/>
+        <result column="liabilities_other" property="liabilitiesOther"/>
+        <result column="liabilities_balance" property="liabilitiesBalance"/>
         <result column="paid_in_capital" property="paidInCapital"/>
         <result column="other_equity" property="otherEquity"/>
         <result column="preferredtock" property="preferredtock"/>
@@ -112,6 +124,12 @@
         <result column="minority_equity" property="minorityEquity"/>
         <result column="sumshequity" property="sumshequity"/>
         <result column="sumliabshequity" property="sumliabshequity"/>
+        <result column="parent_equity_other" property="parentEquityOther"/>
+        <result column="parent_equity_balance" property="parentEquityBalance"/>
+        <result column="sh_equity_other" property="shEquityOther"/>
+        <result column="sh_equity_balance" property="shEquityBalance"/>
+        <result column="lish_equity_other" property="lishEquityOther"/>
+        <result column="lish_equity_balance" property="lishEquityBalance"/>
     </resultMap>
 
     <insert id="upsert">
@@ -144,6 +162,9 @@
         non_liquid_asset_one_year,
         other_liquid_asset,
         sum_liquid_asset,
+        agent_asset,
+        liquid_asset_other,
+        liquid_asset_balance,
         loan_advances,
         saleable_financial_asset,
         held_maturity_investment,
@@ -164,6 +185,10 @@
         other_non_liquid_asset,
         sum_non_liquid_asset,
         sum_asset,
+        non_liquid_asset_other,
+        non_liquid_asset_balance,
+        asset_other,
+        asset_balance,
         short_term_loan,
         loan_from_center_bank,
         deposit,
@@ -193,6 +218,9 @@
         non_cash_liabilities_one_year,
         other_cash_liabilities,
         sum_cash_liabilities,
+        agent_liabilities,
+        cash_liabilities_other,
+        cash_liabilities_balance,
         long_term_loan,
         bond_payable,
         prefer_stock_bond,
@@ -206,6 +234,8 @@
         other_non_current_liabilities,
         sum_non_current_liabilities,
         sum_liabilities,
+        liabilities_other,
+        liabilities_balance,
         paid_in_capital,
         other_equity,
         preferredtock,
@@ -223,9 +253,15 @@
         sum_parent_equity,
         minority_equity,
         sumshequity,
-        sumliabshequity
+        sumliabshequity,
+        parent_equity_other,
+        parent_equity_balance,
+        sh_equity_other,
+        sh_equity_balance,
+        lish_equity_other,
+        lish_equity_balance
 ) VALUES (
-        #{item.securityCode},
+		#{item.securityCode},
         #{item.reportDate},
         #{item.dateType},
         #{item.stockType},
@@ -253,6 +289,9 @@
         #{item.nonLiquidAssetOneYear},
         #{item.otherLiquidAsset},
         #{item.sumLiquidAsset},
+        #{item.agentAsset},
+        #{item.liquidAssetOther},
+        #{item.liquidAssetBalance},
         #{item.loanAdvances},
         #{item.saleableFinancialAsset},
         #{item.heldMaturityInvestment},
@@ -273,6 +312,10 @@
         #{item.otherNonLiquidAsset},
         #{item.sumNonLiquidAsset},
         #{item.sumAsset},
+        #{item.nonLiquidAssetOther},
+        #{item.nonLiquidAssetBalance},
+        #{item.assetOther},
+        #{item.assetBalance},
         #{item.shortTermLoan},
         #{item.loanFromCenterBank},
         #{item.deposit},
@@ -302,6 +345,9 @@
         #{item.nonCashLiabilitiesOneYear},
         #{item.otherCashLiabilities},
         #{item.sumCashLiabilities},
+        #{item.agentLiabilities},
+        #{item.cashLiabilitiesOther},
+        #{item.cashLiabilitiesBalance},
         #{item.longTermLoan},
         #{item.bondPayable},
         #{item.preferStockBond},
@@ -315,6 +361,8 @@
         #{item.otherNonCurrentLiabilities},
         #{item.sumNonCurrentLiabilities},
         #{item.sumLiabilities},
+        #{item.liabilitiesOther},
+        #{item.liabilitiesBalance},
         #{item.paidInCapital},
         #{item.otherEquity},
         #{item.preferredtock},
@@ -332,7 +380,13 @@
         #{item.sumParentEquity},
         #{item.minorityEquity},
         #{item.sumshequity},
-        #{item.sumliabshequity}
+        #{item.sumliabshequity},
+        #{item.parentEquityOther},
+        #{item.parentEquityBalance},
+        #{item.shEquityOther},
+        #{item.shEquityBalance},
+        #{item.lishEquityOther},
+        #{item.lishEquityBalance}
 )ON DUPLICATE KEY UPDATE
         monetary_fund = VALUES(monetary_fund),
         settlement_provision = VALUES(settlement_provision),
@@ -358,6 +412,9 @@
         non_liquid_asset_one_year = VALUES(non_liquid_asset_one_year),
         other_liquid_asset = VALUES(other_liquid_asset),
         sum_liquid_asset = VALUES(sum_liquid_asset),
+        agent_asset = VALUES(agent_asset),
+        liquid_asset_other = VALUES(liquid_asset_other),
+        liquid_asset_balance = VALUES(liquid_asset_balance),
         loan_advances = VALUES(loan_advances),
         saleable_financial_asset = VALUES(saleable_financial_asset),
         held_maturity_investment = VALUES(held_maturity_investment),
@@ -378,6 +435,10 @@
         other_non_liquid_asset = VALUES(other_non_liquid_asset),
         sum_non_liquid_asset = VALUES(sum_non_liquid_asset),
         sum_asset = VALUES(sum_asset),
+        non_liquid_asset_other = VALUES(non_liquid_asset_other),
+        non_liquid_asset_balance = VALUES(non_liquid_asset_balance),
+        asset_other = VALUES(asset_other),
+        asset_balance = VALUES(asset_balance),
         short_term_loan = VALUES(short_term_loan),
         loan_from_center_bank = VALUES(loan_from_center_bank),
         deposit = VALUES(deposit),
@@ -407,6 +468,9 @@
         non_cash_liabilities_one_year = VALUES(non_cash_liabilities_one_year),
         other_cash_liabilities = VALUES(other_cash_liabilities),
         sum_cash_liabilities = VALUES(sum_cash_liabilities),
+        agent_liabilities = VALUES(agent_liabilities),
+        cash_liabilities_other = VALUES(cash_liabilities_other),
+        cash_liabilities_balance = VALUES(cash_liabilities_balance),
         long_term_loan = VALUES(long_term_loan),
         bond_payable = VALUES(bond_payable),
         prefer_stock_bond = VALUES(prefer_stock_bond),
@@ -420,6 +484,8 @@
         other_non_current_liabilities = VALUES(other_non_current_liabilities),
         sum_non_current_liabilities = VALUES(sum_non_current_liabilities),
         sum_liabilities = VALUES(sum_liabilities),
+        liabilities_other = VALUES(liabilities_other),
+        liabilities_balance = VALUES(liabilities_balance),
         paid_in_capital = VALUES(paid_in_capital),
         other_equity = VALUES(other_equity),
         preferredtock = VALUES(preferredtock),
@@ -437,6 +503,12 @@
         sum_parent_equity = VALUES(sum_parent_equity),
         minority_equity = VALUES(minority_equity),
         sumshequity = VALUES(sumshequity),
-        sumliabshequity = VALUES(sumliabshequity)
+        sumliabshequity = VALUES(sumliabshequity),
+        parent_equity_other = VALUES(parent_equity_other),
+        parent_equity_balance = VALUES(parent_equity_balance),
+        sh_equity_other = VALUES(sh_equity_other),
+        sh_equity_balance = VALUES(sh_equity_balance),
+        lish_equity_other = VALUES(lish_equity_other),
+        lish_equity_balance = VALUES(lish_equity_balance)
     </insert>
 </mapper>

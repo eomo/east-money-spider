@@ -12,18 +12,18 @@ import java.util.List;
 public class GenerateCodeUtils {
 
     public static void main(String[] args) throws Exception {
-//        mybatisMap("BalanceSheet");
+        mybatisMap("BalanceSheet");
 //        mybatisMap("IncomeStatement");
 //        mybatisMap("CashFlowStatement");
-//        insertSQL("BalanceSheet");
+        insertSQL("BalanceSheet");
 //        insertSQL("CashFlowStatement");
 //        insertSQL("IncomeStatement");
-//        createTableSQL("BalanceSheet");
+        createTableSQL("BalanceSheet");
 //        createTableSQL("CashFlowStatement");
 //        createTableSQL("IncomeStatement");
 //        getterAndSetter("BalanceSheet");
 //        getterAndSetter("CashFlowStatement");
-        getterAndSetter("IncomeStatement");
+//        getterAndSetter("IncomeStatement");
     }
 
     public static void getterAndSetter(String javaName) throws Exception {
@@ -92,12 +92,11 @@ public class GenerateCodeUtils {
 
 
     public static List<ModelClassInfo> getCDXList(String javaName) throws Exception {
-        File file = new File("/Users/Moon/WorkSpace/github.com/east-money-spider/src/main/java/cn/moondev/spider/model/" + javaName + ".java");
+        File file = new File("C:\\WorkSpace\\github.com\\east-money-spider\\src\\main\\java\\cn\\moondev\\spider\\model\\" + javaName + ".java");
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line;
         String content = "";
         String field = "";
-        String jsonField = "";
         List<ModelClassInfo> cdxList = Lists.newArrayList();
         while ((line = reader.readLine()) != null) {
             // 获取注释
@@ -111,11 +110,8 @@ public class GenerateCodeUtils {
                     field = line.substring(16);
                 }
             }
-            if (line.contains("@JSONField")) {
-                jsonField = line.substring(23).trim();
-            }
-            if (!Strings.isNullOrEmpty(content) && !Strings.isNullOrEmpty(field) && !Strings.isNullOrEmpty(jsonField)) {
-                cdxList.add(new ModelClassInfo(field.substring(0, field.length() - 1),jsonField.substring(0,jsonField.length()-2), content));
+            if (!Strings.isNullOrEmpty(content) && !Strings.isNullOrEmpty(field)) {
+                cdxList.add(new ModelClassInfo(field.substring(0, field.length() - 1),content));
                 content = "";
                 field = "";
             }
