@@ -103,6 +103,22 @@ public class CashFlowStatement {
     public long netCashInBusiness;
 
 
+    // 经营活动现金流入的其他项目(新三板)
+    public long OPERATEFLOWINOTHER;
+    // 经营活动现金流入的平衡项目(新三板)
+    public long OPERATEFLOWINBALANCE;
+    // 经营活动现金流出的其他项目(新三板)
+    public long OPERATEFLOWOUTOTHER;
+    // 经营活动现金流出的平衡项目(新三板)
+    public long OPERATEFLOWOUTBALANCE;
+    // 经营活动产生的现金流量净额其他项目(新三板)
+    public long OPERATEFLOWOTHER;
+    // 经营活动产生的现金流量净额平衡项目(新三板)
+    public long OPERATEFLOWBALANCE;
+
+
+
+
     //******************************************
     //************第2部分：投资活动***************
     //******************************************
@@ -151,6 +167,18 @@ public class CashFlowStatement {
     // 投资活动产生的现金流量净额
     public long netCashInInvestment;
 
+    // 投资活动现金流入的其他项目(新三板)
+    public long INVFLOWINOTHER;
+    // 投资活动现金流入的平衡项目(新三板)
+    public long INVFLOWINBALANCE;
+    // 投资活动现金流出的其他项目(新三板)
+    public long INVFLOWOUTOTHER;
+    // 投资活动现金流出的平衡项目(新三板)
+    public long INVFLOWOUTBALANCE;
+    // 投资活动产生的现金流量净额其他项目(新三板)
+    public long INVFLOWOTHER;
+    // 投资活动产生的现金流量净额平衡项目(新三板)
+    public long INVFLOWBALANCE;
 
     //******************************************
     //************第3部分：融资活动***************
@@ -197,10 +225,28 @@ public class CashFlowStatement {
     // 筹资活动产生的现金流量净额
     public long netCashInFinancing;
 
+    // 筹资活动现金流入的其他项目(新三板)
+    public long FINAFLOWINOTHER;
+    // 筹资活动现金流入的平衡项目(新三板)
+    public long FINAFLOWINBALANCE;
+    // 筹资活动现金流出的其他项目(新三板)
+    public long FINAFLOWOUTOTHER;
+    // 筹资活动现金流出的平衡项目(新三板)
+    public long FINAFLOWOUTBALANCE;
+    // 筹资活动产生的现金流量净额其他项目(新三板)
+    public long FINAFLOWOTHER;
+    // 筹资活动产生的现金流量净额平衡项目(新三板)
+    public long FINAFLOWBALANCE;
 
+    //******************************************
+    //************第4部分：汇率变动***************
+    //******************************************
     // 汇率变动对现金及现金等价物的影响
     public long effectExchangeRate;
 
+    //********************************************************
+    //************第5部分：现金及现金等价物净增加额***************
+    //********************************************************
     // 现金及现金等价物净增加额
     public long netIncreaseInCashEqui;
 
@@ -209,6 +255,92 @@ public class CashFlowStatement {
 
     // 期末现金及现金等价物余额(现金及现金等价物净增加额 + 期初现金及现金等价物余额)
     public long cashInPeriodEnding;
+
+    // 现金及现金等价物净增加额其他项目(新三板)
+    public long NICASHEQUIOTHER;
+    // 现金及现金等价物净增加额平衡项目(新三板)
+    public long NICASHEQUIBALANCE;
+    // 期末现金及现金等价物余额其他项目(新三板)
+    public long CASHEQUIENDINGOTHER;
+    // 期末现金及现金等价物余额平衡项目(新三板)
+    public long CASHEQUIENDINGBALANCE;
+
+    //******************************************************
+    //************第6部分：补充材料(新三板特有) ***************
+    //******************************************************
+    
+    // 净利润(新三板)
+    public long NETPROFIT;
+    // 资产减值准备(新三板)
+    public long ASSETDEVALUE;
+    // 固定资产和投资性房地产折旧(新三板)
+    public long FIXANDESTATEDEPR;
+    // 其中:固定资产折旧、油气资产折耗、生产性生物资产折旧(新三板)
+    public long FIXEDASSETETCDEPR;
+    // 投资性房地产折旧(新三板)
+    public long ESTATEINVESTDEPR;
+    // 无形资产摊销(新三板)
+    public long INTANGIBLEASSETAMOR;
+    // 长期待摊费用摊销(新三板)
+    public long LTDEFEREXPAMOR;
+    // 递延收益摊销(新三板)
+    public long DEFERINCOMEAMOR;
+    // 待摊费用的减少(新三板)
+    public long DEFEREXPREDUCE;
+    // 预提费用的增加(新三板)
+    public long DRAWINGEXPADD;
+    // 处置固定资产、无形资产和其他长期资产的损失(新三板)
+    public long DISPFILASSETLOSS;
+    // 固定资产报废损失(新三板)
+    public long FIXEDASSETLOSS;
+    // 公允价值变动损失(新三板)
+    public long FVALUELOSS;
+    // 财务费用(新三板)
+    public long FINANCEEXP;
+    // 投资损失(新三板)
+    public long INVLOSS;
+    // 递延所得税(新三板)
+    public long DEFERTAX;
+    // 其中:递延所得税资产减少(新三板)
+    public long DEFERTAXASSETREDUCE;
+    // 递延所得税负债增加(新三板)
+    public long DEFERTAXLIABADD;
+    // 预计负债的增加(新三板)
+    public long ANTICIPATELIABADD;
+    // 存货的减少(新三板)
+    public long INVENTORYREDUCE;
+    // 经营性应收项目的减少(新三板)
+    public long OPERATERECREDUCE;
+    // 经营性应付项目的增加(新三板)
+    public long OPERATEPAYADD;
+    // 经营活动产生的现金流量净额其他项目(新三板)
+    public long DEC_JYHDCSDXJLLJEQT;
+    // 经营活动产生的现金流量净额平衡项目(新三板)
+    public long DEC_JYHDCSDXJLLJEPH;
+    // 经营活动产生的现金流量净额(新三板)
+    public long DEC_JYHDCSDXJLLJE;
+    // 债务转为资本(新三板)
+    public long DEBTTOCAPITAL;
+    // 一年内到期的可转换公司债券(新三板)
+    public long CBONEYEAR;
+    // 融资租入固定资产(新三板)
+    public long FINALEASEFIXEDASSET;
+    // 不涉及现金收支的投资和筹资活动金额其他项目(新三板)
+    public long NOREFERCASHOTHER;
+    // 现金的期末余额(新三板)
+    public long DEC_XJDQMYE;
+    // 减:现金的期初余额(新三板)
+    public long DEC_XJDQCYE;
+    // 加:现金等价物的期末余额(新三板)
+    public long DEC_XJDJWQMYE;
+    // 减:现金等价物的期初余额(新三板)
+    public long DEC_XJDJWQCYE;
+    // 现金及现金等价物净增加额其他项目(新三板)
+    public long DEC_XJJZJECETS;
+    // 现金及现金等价物净增加额平衡项目(新三板)
+    public long DEC_XJJZJECEHJ;
+    // 现金及现金等价物的净增加额(新三板)
+    public long DEC_XJJXJDJWJZJ;
 
     public CashFlowStatement() {
 

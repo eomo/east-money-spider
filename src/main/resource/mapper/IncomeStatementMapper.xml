@@ -3,17 +3,18 @@
 <mapper namespace="cn.moondev.spider.mapper.IncomeStatementMapper">
 
     <resultMap id="prospectusMap" type="cn.moondev.spider.model.IncomeStatement">
-        <id column="info_code" property="infoCode"/>
-        <result column="stock_type" property="stockType"/>
+        <id column="id" property="id"/>
         <result column="date_type" property="dateType"/>
         <result column="security_code" property="securityCode"/>
         <result column="report_date" property="reportDate"/>
+        <result column="stock_type" property="stockType"/>
         <result column="gross_revenue" property="grossRevenue"/>
         <result column="operating_receipt" property="operatingReceipt"/>
         <result column="interest_revenue" property="interestRevenue"/>
         <result column="premium_earned" property="premiumEarned"/>
         <result column="commreve" property="commreve"/>
         <result column="other_revenue" property="otherRevenue"/>
+        <result column="gross_revenue_other" property="grossRevenueOther"/>
         <result column="total_operating_cost" property="totalOperatingCost"/>
         <result column="operating_cost" property="operatingCost"/>
         <result column="interest_exp" property="interestExp"/>
@@ -30,6 +31,7 @@
         <result column="manage_exp" property="manageExp"/>
         <result column="financial_exp" property="financialExp"/>
         <result column="asset_value_loss" property="assetValueLoss"/>
+        <result column="operating_cost_other" property="operatingCostOther"/>
         <result column="fair_value_income" property="fairValueIncome"/>
         <result column="investment_income" property="investmentIncome"/>
         <result column="investment_join_income" property="investmentJoinIncome"/>
@@ -39,13 +41,21 @@
         <result column="non_current_asset_revenue" property="nonCurrentAssetRevenue"/>
         <result column="non_business_exp" property="nonBusinessExp"/>
         <result column="non_current_asset_loss" property="nonCurrentAssetLoss"/>
+        <result column="operating_profit_other" property="operatingProfitOther"/>
+        <result column="operating_profit_balance" property="operatingProfitBalance"/>
         <result column="sum_profit" property="sumProfit"/>
         <result column="income_tax" property="incomeTax"/>
+        <result column="sum_profit_other" property="sumProfitOther"/>
+        <result column="sum_profit_balance" property="sumProfitBalance"/>
         <result column="combined_net_profit" property="combinedNetProfit"/>
         <result column="net_profit" property="netProfit"/>
         <result column="parent_net_profit" property="parentNetProfit"/>
         <result column="minority_income" property="minorityIncome"/>
         <result column="net_profit_after_loss" property="netProfitAfterLoss"/>
+        <result column="plus_net_profit_other" property="plusNetProfitOther"/>
+        <result column="unconfirm_invest_loss" property="unconfirmInvestLoss"/>
+        <result column="minus_net_profit_other" property="minusNetProfitOther"/>
+        <result column="net_profit_balance" property="netProfitBalance"/>
         <result column="basic_eps" property="basicEps"/>
         <result column="diluted_eps" property="dilutedEps"/>
         <result column="oci" property="oci"/>
@@ -58,9 +68,9 @@
 
     <insert id="upsert">
         INSERT INTO t_income_statement(
-        date_type,
         security_code,
         report_date,
+        date_type,
         stock_type,
         gross_revenue,
         operating_receipt,
@@ -68,6 +78,7 @@
         premium_earned,
         commreve,
         other_revenue,
+        gross_revenue_other,
         total_operating_cost,
         operating_cost,
         interest_exp,
@@ -84,6 +95,7 @@
         manage_exp,
         financial_exp,
         asset_value_loss,
+        operating_cost_other,
         fair_value_income,
         investment_income,
         investment_join_income,
@@ -93,13 +105,21 @@
         non_current_asset_revenue,
         non_business_exp,
         non_current_asset_loss,
+        operating_profit_other,
+        operating_profit_balance,
         sum_profit,
         income_tax,
+        sum_profit_other,
+        sum_profit_balance,
         combined_net_profit,
         net_profit,
         parent_net_profit,
         minority_income,
         net_profit_after_loss,
+        plus_net_profit_other,
+        unconfirm_invest_loss,
+        minus_net_profit_other,
+        net_profit_balance,
         basic_eps,
         diluted_eps,
         oci,
@@ -108,7 +128,7 @@
         sumci,
         parent_compay_ci,
         minority_shareholder_ci,
-    ) VALUES (
+) VALUES (
         #{item.securityCode},
         #{item.reportDate},
         #{item.dateType},
@@ -119,6 +139,7 @@
         #{item.premiumEarned},
         #{item.commreve},
         #{item.otherRevenue},
+        #{item.grossRevenueOther},
         #{item.totalOperatingCost},
         #{item.operatingCost},
         #{item.interestExp},
@@ -135,6 +156,7 @@
         #{item.manageExp},
         #{item.financialExp},
         #{item.assetValueLoss},
+        #{item.operatingCostOther},
         #{item.fairValueIncome},
         #{item.investmentIncome},
         #{item.investmentJoinIncome},
@@ -144,13 +166,21 @@
         #{item.nonCurrentAssetRevenue},
         #{item.nonBusinessExp},
         #{item.nonCurrentAssetLoss},
+        #{item.operatingProfitOther},
+        #{item.operatingProfitBalance},
         #{item.sumProfit},
         #{item.incomeTax},
+        #{item.sumProfitOther},
+        #{item.sumProfitBalance},
         #{item.combinedNetProfit},
         #{item.netProfit},
         #{item.parentNetProfit},
         #{item.minorityIncome},
         #{item.netProfitAfterLoss},
+        #{item.plusNetProfitOther},
+        #{item.unconfirmInvestLoss},
+        #{item.minusNetProfitOther},
+        #{item.netProfitBalance},
         #{item.basicEps},
         #{item.dilutedEps},
         #{item.oci},
@@ -158,14 +188,16 @@
         #{item.minorityShareholderOCI},
         #{item.sumci},
         #{item.parentCompayCI},
-        #{item.minorityShareholderCI}
+        #{item.minorityShareholderCI},
 )ON DUPLICATE KEY UPDATE
+        stock_type = VALUES(stock_type),
         gross_revenue = VALUES(gross_revenue),
         operating_receipt = VALUES(operating_receipt),
         interest_revenue = VALUES(interest_revenue),
         premium_earned = VALUES(premium_earned),
         commreve = VALUES(commreve),
         other_revenue = VALUES(other_revenue),
+        gross_revenue_other = VALUES(gross_revenue_other),
         total_operating_cost = VALUES(total_operating_cost),
         operating_cost = VALUES(operating_cost),
         interest_exp = VALUES(interest_exp),
@@ -182,6 +214,7 @@
         manage_exp = VALUES(manage_exp),
         financial_exp = VALUES(financial_exp),
         asset_value_loss = VALUES(asset_value_loss),
+        operating_cost_other = VALUES(operating_cost_other),
         fair_value_income = VALUES(fair_value_income),
         investment_income = VALUES(investment_income),
         investment_join_income = VALUES(investment_join_income),
@@ -191,13 +224,21 @@
         non_current_asset_revenue = VALUES(non_current_asset_revenue),
         non_business_exp = VALUES(non_business_exp),
         non_current_asset_loss = VALUES(non_current_asset_loss),
+        operating_profit_other = VALUES(operating_profit_other),
+        operating_profit_balance = VALUES(operating_profit_balance),
         sum_profit = VALUES(sum_profit),
         income_tax = VALUES(income_tax),
+        sum_profit_other = VALUES(sum_profit_other),
+        sum_profit_balance = VALUES(sum_profit_balance),
         combined_net_profit = VALUES(combined_net_profit),
         net_profit = VALUES(net_profit),
         parent_net_profit = VALUES(parent_net_profit),
         minority_income = VALUES(minority_income),
         net_profit_after_loss = VALUES(net_profit_after_loss),
+        plus_net_profit_other = VALUES(plus_net_profit_other),
+        unconfirm_invest_loss = VALUES(unconfirm_invest_loss),
+        minus_net_profit_other = VALUES(minus_net_profit_other),
+        net_profit_balance = VALUES(net_profit_balance),
         basic_eps = VALUES(basic_eps),
         diluted_eps = VALUES(diluted_eps),
         oci = VALUES(oci),
@@ -205,6 +246,6 @@
         minority_shareholder_oci = VALUES(minority_shareholder_oci),
         sumci = VALUES(sumci),
         parent_compay_ci = VALUES(parent_compay_ci),
-        minority_shareholder_ci = VALUES(minority_shareholder_ci)
+        minority_shareholder_ci = VALUES(minority_shareholder_ci),
     </insert>
 </mapper>

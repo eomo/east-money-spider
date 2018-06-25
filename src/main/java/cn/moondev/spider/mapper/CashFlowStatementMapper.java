@@ -5,10 +5,5 @@ import org.apache.ibatis.annotations.Param;
 
 public interface CashFlowStatementMapper {
 
-    /**
-     * 插入更新
-     *
-     * @param cashFlowStatement
-     */
     void upsert(@Param("item") CashFlowStatement cashFlowStatement);
 }

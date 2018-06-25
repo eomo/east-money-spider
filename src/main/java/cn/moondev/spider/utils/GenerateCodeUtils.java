@@ -12,15 +12,15 @@ import java.util.List;
 public class GenerateCodeUtils {
 
     public static void main(String[] args) throws Exception {
-        mybatisMap("BalanceSheet");
-//        mybatisMap("IncomeStatement");
+//        mybatisMap("BalanceSheet");
+        mybatisMap("IncomeStatement");
 //        mybatisMap("CashFlowStatement");
-        insertSQL("BalanceSheet");
+//        insertSQL("BalanceSheet");
 //        insertSQL("CashFlowStatement");
-//        insertSQL("IncomeStatement");
-        createTableSQL("BalanceSheet");
+        insertSQL("IncomeStatement");
+//        createTableSQL("BalanceSheet");
 //        createTableSQL("CashFlowStatement");
-//        createTableSQL("IncomeStatement");
+        createTableSQL("IncomeStatement");
 //        getterAndSetter("BalanceSheet");
 //        getterAndSetter("CashFlowStatement");
 //        getterAndSetter("IncomeStatement");
@@ -92,7 +92,7 @@ public class GenerateCodeUtils {
 
 
     public static List<ModelClassInfo> getCDXList(String javaName) throws Exception {
-        File file = new File("C:\\WorkSpace\\github.com\\east-money-spider\\src\\main\\java\\cn\\moondev\\spider\\model\\" + javaName + ".java");
+        File file = new File("/Users/Moon/WorkSpace/github.com/east-money-spider/src/main/java/cn/moondev/spider/model/" + javaName + ".java");
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line;
         String content = "";
