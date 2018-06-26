@@ -102,21 +102,23 @@ public class CashFlowStatement {
     // 经营活动产生的现金流量净额(现金流入小计 - 现金流出小计)
     public long netCashInBusiness;
 
-
     // 经营活动现金流入的其他项目(新三板)
-    public long OPERATEFLOWINOTHER;
+    public long operatingCashInOther;
+
     // 经营活动现金流入的平衡项目(新三板)
-    public long OPERATEFLOWINBALANCE;
+    public long operatingCashInBalance;
+
     // 经营活动现金流出的其他项目(新三板)
-    public long OPERATEFLOWOUTOTHER;
+    public long operatingCashOutOther;
+
     // 经营活动现金流出的平衡项目(新三板)
-    public long OPERATEFLOWOUTBALANCE;
+    public long operatingCashOutBalance;
+
     // 经营活动产生的现金流量净额其他项目(新三板)
-    public long OPERATEFLOWOTHER;
+    public long operatingNetCashOther;
+
     // 经营活动产生的现金流量净额平衡项目(新三板)
-    public long OPERATEFLOWBALANCE;
-
-
+    public long operatingNetCashBalance;
 
 
     //******************************************
@@ -168,17 +170,22 @@ public class CashFlowStatement {
     public long netCashInInvestment;
 
     // 投资活动现金流入的其他项目(新三板)
-    public long INVFLOWINOTHER;
+    public long investCashInOther;
+
     // 投资活动现金流入的平衡项目(新三板)
-    public long INVFLOWINBALANCE;
+    public long investCashInBalance;
+
     // 投资活动现金流出的其他项目(新三板)
-    public long INVFLOWOUTOTHER;
+    public long investCashOutOther;
+
     // 投资活动现金流出的平衡项目(新三板)
-    public long INVFLOWOUTBALANCE;
+    public long investCashOutBalance;
+
     // 投资活动产生的现金流量净额其他项目(新三板)
-    public long INVFLOWOTHER;
+    public long investNetCashOther;
+
     // 投资活动产生的现金流量净额平衡项目(新三板)
-    public long INVFLOWBALANCE;
+    public long investNetCashBalance;
 
     //******************************************
     //************第3部分：融资活动***************
@@ -226,17 +233,22 @@ public class CashFlowStatement {
     public long netCashInFinancing;
 
     // 筹资活动现金流入的其他项目(新三板)
-    public long FINAFLOWINOTHER;
+    public long financingCashInOther;
+
     // 筹资活动现金流入的平衡项目(新三板)
-    public long FINAFLOWINBALANCE;
+    public long financingCashInBalance;
+
     // 筹资活动现金流出的其他项目(新三板)
-    public long FINAFLOWOUTOTHER;
+    public long financingCashOutOther;
+
     // 筹资活动现金流出的平衡项目(新三板)
-    public long FINAFLOWOUTBALANCE;
+    public long financingCashOutBalance;
+
     // 筹资活动产生的现金流量净额其他项目(新三板)
-    public long FINAFLOWOTHER;
+    public long financingNetCashOther;
+
     // 筹资活动产生的现金流量净额平衡项目(新三板)
-    public long FINAFLOWBALANCE;
+    public long financingNetCashBalance;
 
     //******************************************
     //************第4部分：汇率变动***************
@@ -257,90 +269,127 @@ public class CashFlowStatement {
     public long cashInPeriodEnding;
 
     // 现金及现金等价物净增加额其他项目(新三板)
-    public long NICASHEQUIOTHER;
+    public long netIncreaseInCashEquiOther;
+
     // 现金及现金等价物净增加额平衡项目(新三板)
-    public long NICASHEQUIBALANCE;
+    public long netIncreaseInCashEquiBalance;
+
     // 期末现金及现金等价物余额其他项目(新三板)
-    public long CASHEQUIENDINGOTHER;
+    public long cashInPeriodEndingOther;
+
     // 期末现金及现金等价物余额平衡项目(新三板)
-    public long CASHEQUIENDINGBALANCE;
+    public long cashInPeriodEndingBalance;
 
     //******************************************************
     //************第6部分：补充材料(新三板特有) ***************
     //******************************************************
-    
     // 净利润(新三板)
-    public long NETPROFIT;
+    public long netProfit;
+
     // 资产减值准备(新三板)
-    public long ASSETDEVALUE;
+    public long assetReduceValue;
+
     // 固定资产和投资性房地产折旧(新三板)
-    public long FIXANDESTATEDEPR;
+    public long fixedEstateAssetDepreciation;
+
     // 其中:固定资产折旧、油气资产折耗、生产性生物资产折旧(新三板)
-    public long FIXEDASSETETCDEPR;
+    public long fixedGassProductionAssetDepr;
+
     // 投资性房地产折旧(新三板)
-    public long ESTATEINVESTDEPR;
+    public long estateInvestDepr;
+
     // 无形资产摊销(新三板)
-    public long INTANGIBLEASSETAMOR;
+    public long amortizationOfIntangibleAsset;
+
     // 长期待摊费用摊销(新三板)
-    public long LTDEFEREXPAMOR;
+    public long amortizationOfLongTermExpense;
+
     // 递延收益摊销(新三板)
-    public long DEFERINCOMEAMOR;
+    public long amortizationOfDeferredIncome;
+
     // 待摊费用的减少(新三板)
-    public long DEFEREXPREDUCE;
+    public long reducedCostOfApportioned;
+
     // 预提费用的增加(新三板)
-    public long DRAWINGEXPADD;
+    public long drawingExpenseAdd;
+
     // 处置固定资产、无形资产和其他长期资产的损失(新三板)
-    public long DISPFILASSETLOSS;
+    public long lossOnDisponseAssert;
+
     // 固定资产报废损失(新三板)
-    public long FIXEDASSETLOSS;
+    public long lossOnFixedAsset;
+
     // 公允价值变动损失(新三板)
-    public long FVALUELOSS;
+    public long lossOnFairValue;
+
     // 财务费用(新三板)
-    public long FINANCEEXP;
+    public long financialExpense;
+
     // 投资损失(新三板)
-    public long INVLOSS;
+    public long lossOnInvest;
+
     // 递延所得税(新三板)
-    public long DEFERTAX;
+    public long deferredIncomeTax;
+
     // 其中:递延所得税资产减少(新三板)
-    public long DEFERTAXASSETREDUCE;
+    public long deferredIncomeTaxReduction;
+
     // 递延所得税负债增加(新三板)
-    public long DEFERTAXLIABADD;
+    public long deferredIncomeTaxLiabAdd;
+
     // 预计负债的增加(新三板)
-    public long ANTICIPATELIABADD;
+    public long anticipateLiabAdd;
+
     // 存货的减少(新三板)
-    public long INVENTORYREDUCE;
+    public long inventoryReduce;
+
     // 经营性应收项目的减少(新三板)
-    public long OPERATERECREDUCE;
+    public long operatingReduce;
+
     // 经营性应付项目的增加(新三板)
-    public long OPERATEPAYADD;
-    // 经营活动产生的现金流量净额其他项目(新三板)
-    public long DEC_JYHDCSDXJLLJEQT;
-    // 经营活动产生的现金流量净额平衡项目(新三板)
-    public long DEC_JYHDCSDXJLLJEPH;
+    public long operatingPayAdd;
+
+    // 补充资料经营活动产生的现金流量净额其他项目(新三板)
+    public long netCashOfOperatingOtherSup;
+
+    // 补充资料经营活动产生的现金流量净额平衡项目(新三板)
+    public long netCashOfOperatingBalanceSup;
+
     // 经营活动产生的现金流量净额(新三板)
-    public long DEC_JYHDCSDXJLLJE;
+    public long netCashOfOperating;
+
     // 债务转为资本(新三板)
-    public long DEBTTOCAPITAL;
+    public long debtToCapital;
+
     // 一年内到期的可转换公司债券(新三板)
-    public long CBONEYEAR;
+    public long cboneyear;
+
     // 融资租入固定资产(新三板)
-    public long FINALEASEFIXEDASSET;
+    public long fixedAssetUnderFinancingLease;
+
     // 不涉及现金收支的投资和筹资活动金额其他项目(新三板)
-    public long NOREFERCASHOTHER;
+    public long noReferCashOther;
+
     // 现金的期末余额(新三板)
-    public long DEC_XJDQMYE;
+    public long periodEndingCash;
+
     // 减:现金的期初余额(新三板)
-    public long DEC_XJDQCYE;
+    public long periodBeginningCash;
+
     // 加:现金等价物的期末余额(新三板)
-    public long DEC_XJDJWQMYE;
+    public long periodEndingMoneyEquivalent;
+
     // 减:现金等价物的期初余额(新三板)
-    public long DEC_XJDJWQCYE;
+    public long periodBeginningMoneyEquivalent;
+
     // 现金及现金等价物净增加额其他项目(新三板)
-    public long DEC_XJJZJECETS;
+    public long moneyEquivalentOther;
+
     // 现金及现金等价物净增加额平衡项目(新三板)
-    public long DEC_XJJZJECEHJ;
+    public long moneyEquivalentBalance;
+
     // 现金及现金等价物的净增加额(新三板)
-    public long DEC_XJJXJDJWJZJ;
+    public long moneyEquivalentNetAdd;
 
     public CashFlowStatement() {
 
@@ -408,5 +457,63 @@ public class CashFlowStatement {
         this.netIncreaseInCashEqui = NumberUtils.convertCent(json.getString("NICASHEQUI"));
         this.cashInPeriodBeginning = NumberUtils.convertCent(json.getString("CASHEQUIBEGINNING"));
         this.cashInPeriodEnding = NumberUtils.convertCent(json.getString("CASHEQUIENDING"));
+        this.operatingCashInOther = NumberUtils.convertCent(json.getString("OPERATEFLOWINOTHER"));
+        this.operatingCashInBalance = NumberUtils.convertCent(json.getString("OPERATEFLOWINBALANCE"));
+        this.operatingCashOutOther = NumberUtils.convertCent(json.getString("OPERATEFLOWOUTOTHER"));
+        this.operatingCashOutBalance = NumberUtils.convertCent(json.getString("OPERATEFLOWOUTBALANCE"));
+        this.operatingNetCashOther = NumberUtils.convertCent(json.getString("OPERATEFLOWOTHER"));
+        this.operatingNetCashBalance = NumberUtils.convertCent(json.getString("OPERATEFLOWBALANCE"));
+        this.investCashInOther = NumberUtils.convertCent(json.getString("INVFLOWINOTHER"));
+        this.investCashInBalance = NumberUtils.convertCent(json.getString("INVFLOWINBALANCE"));
+        this.investCashOutOther = NumberUtils.convertCent(json.getString("INVFLOWOUTOTHER"));
+        this.investCashOutBalance = NumberUtils.convertCent(json.getString("INVFLOWOUTBALANCE"));
+        this.investNetCashOther = NumberUtils.convertCent(json.getString("INVFLOWOTHER"));
+        this.investNetCashBalance = NumberUtils.convertCent(json.getString("INVFLOWBALANCE"));
+        this.financingCashInOther = NumberUtils.convertCent(json.getString("FINAFLOWINOTHER"));
+        this.financingCashInBalance = NumberUtils.convertCent(json.getString("FINAFLOWINBALANCE"));
+        this.financingCashOutOther = NumberUtils.convertCent(json.getString("FINAFLOWOUTOTHER"));
+        this.financingCashOutBalance = NumberUtils.convertCent(json.getString("FINAFLOWOUTBALANCE"));
+        this.financingNetCashOther = NumberUtils.convertCent(json.getString("FINAFLOWOTHER"));
+        this.financingNetCashBalance = NumberUtils.convertCent(json.getString("FINAFLOWBALANCE"));
+        this.netIncreaseInCashEquiOther = NumberUtils.convertCent(json.getString("NICASHEQUIOTHER"));
+        this.netIncreaseInCashEquiBalance = NumberUtils.convertCent(json.getString("NICASHEQUIBALANCE"));
+        this.cashInPeriodEndingOther = NumberUtils.convertCent(json.getString("CASHEQUIENDINGOTHER"));
+        this.cashInPeriodEndingBalance = NumberUtils.convertCent(json.getString("CASHEQUIENDINGBALANCE"));
+        this.netProfit = NumberUtils.convertCent(json.getString("NETPROFIT"));
+        this.assetReduceValue = NumberUtils.convertCent(json.getString("ASSETDEVALUE"));
+        this.fixedEstateAssetDepreciation = NumberUtils.convertCent(json.getString("FIXANDESTATEDEPR"));
+        this.fixedGassProductionAssetDepr = NumberUtils.convertCent(json.getString("FIXEDASSETETCDEPR"));
+        this.estateInvestDepr = NumberUtils.convertCent(json.getString("ESTATEINVESTDEPR"));
+        this.amortizationOfIntangibleAsset = NumberUtils.convertCent(json.getString("INTANGIBLEASSETAMOR"));
+        this.amortizationOfLongTermExpense = NumberUtils.convertCent(json.getString("LTDEFEREXPAMOR"));
+        this.amortizationOfDeferredIncome = NumberUtils.convertCent(json.getString("DEFERINCOMEAMOR"));
+        this.reducedCostOfApportioned = NumberUtils.convertCent(json.getString("DEFEREXPREDUCE"));
+        this.drawingExpenseAdd = NumberUtils.convertCent(json.getString("DRAWINGEXPADD"));
+        this.lossOnDisponseAssert = NumberUtils.convertCent(json.getString("DISPFILASSETLOSS"));
+        this.lossOnFixedAsset = NumberUtils.convertCent(json.getString("FIXEDASSETLOSS"));
+        this.lossOnFairValue = NumberUtils.convertCent(json.getString("FVALUELOSS"));
+        this.financialExpense = NumberUtils.convertCent(json.getString("FINANCEEXP"));
+        this.lossOnInvest = NumberUtils.convertCent(json.getString("INVLOSS"));
+        this.deferredIncomeTax = NumberUtils.convertCent(json.getString("DEFERTAX"));
+        this.deferredIncomeTaxReduction = NumberUtils.convertCent(json.getString("DEFERTAXASSETREDUCE"));
+        this.deferredIncomeTaxLiabAdd = NumberUtils.convertCent(json.getString("DEFERTAXLIABADD"));
+        this.anticipateLiabAdd = NumberUtils.convertCent(json.getString("ANTICIPATELIABADD"));
+        this.inventoryReduce = NumberUtils.convertCent(json.getString("INVENTORYREDUCE"));
+        this.operatingReduce = NumberUtils.convertCent(json.getString("OPERATERECREDUCE"));
+        this.operatingPayAdd = NumberUtils.convertCent(json.getString("OPERATEPAYADD"));
+        this.netCashOfOperatingOtherSup = NumberUtils.convertCent(json.getString("DEC_JYHDCSDXJLLJEQT"));
+        this.netCashOfOperatingBalanceSup = NumberUtils.convertCent(json.getString("DEC_JYHDCSDXJLLJEPH"));
+        this.netCashOfOperating = NumberUtils.convertCent(json.getString("DEC_JYHDCSDXJLLJE"));
+        this.debtToCapital = NumberUtils.convertCent(json.getString("DEBTTOCAPITAL"));
+        this.cboneyear = NumberUtils.convertCent(json.getString("CBONEYEAR"));
+        this.fixedAssetUnderFinancingLease = NumberUtils.convertCent(json.getString("FINALEASEFIXEDASSET"));
+        this.noReferCashOther = NumberUtils.convertCent(json.getString("NOREFERCASHOTHER"));
+        this.periodEndingCash = NumberUtils.convertCent(json.getString("DEC_XJDQMYE"));
+        this.periodBeginningCash = NumberUtils.convertCent(json.getString("DEC_XJDQCYE"));
+        this.periodEndingMoneyEquivalent = NumberUtils.convertCent(json.getString("DEC_XJDJWQMYE"));
+        this.periodBeginningMoneyEquivalent = NumberUtils.convertCent(json.getString("DEC_XJDJWQCYE"));
+        this.moneyEquivalentOther = NumberUtils.convertCent(json.getString("DEC_XJJZJECETS"));
+        this.moneyEquivalentBalance = NumberUtils.convertCent(json.getString("DEC_XJJZJECEHJ"));
+        this.moneyEquivalentNetAdd = NumberUtils.convertCent(json.getString("DEC_XJJXJDJWJZJ"));
     }
 }
