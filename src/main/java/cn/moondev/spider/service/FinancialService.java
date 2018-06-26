@@ -1,10 +1,12 @@
 package cn.moondev.spider.service;
 
-import cn.moondev.spider.spider.BalanceSheetSpider;
+import cn.moondev.spider.spider.FinancialSpider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 财务分析
@@ -13,17 +15,19 @@ import org.springframework.stereotype.Service;
 public class FinancialService {
 
     private static final Logger LOG = LoggerFactory.getLogger(FinancialService.class);
-    @Autowired
-    private BalanceSheetSpider balanceSheetSpider;
 
     /**
-     * 财务分析
+     * 自动注入所有的FinancialSpider实现类
      */
-    public void spider(String stock) {
-        // 资产负债表
-        balanceSheetSpider.crawl(stock);
-        // 利润表
+    @Autowired
+    private List<FinancialSpider> spiders;
 
-        // 现金流量表
+    /**
+     * 从东方财富网抓取财务分析数据
+     *
+     * @param stock
+     */
+    public void crawlFinancialDataFromEashMoney(String stock) {
+        spiders.parallelStream().forEach(spider -> spider.spider(stock));
     }
 }

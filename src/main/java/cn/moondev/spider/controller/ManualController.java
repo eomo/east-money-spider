@@ -23,7 +23,7 @@ public class ManualController {
 
     @RequestMapping(value = "/finanical", method = RequestMethod.GET)
     public String financial(@RequestParam(required = false) String stock) {
-        financialService.spider(stock);
+//        financialService.spider(stock);
         return "success";
     }
 
