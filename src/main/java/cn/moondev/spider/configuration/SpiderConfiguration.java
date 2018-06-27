@@ -12,10 +12,12 @@ public class SpiderConfiguration {
 
     @Value("${okhttp.connection.timeout:15}")
     private String connectionTimeout;
+    @Value("${spider.interval.time.msec:500}")
+    private String interval;
 
     @Bean
     public OkHttpOperations okHttpOperations() {
-        return new OkHttpOperations(Long.parseLong(connectionTimeout));
+        return new OkHttpOperations(Long.parseLong(connectionTimeout), Long.parseLong(interval));
     }
 
     /**

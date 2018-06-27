@@ -1,11 +1,15 @@
 package cn.moondev.spider.spider;
 
 import cn.moondev.spider.model.ReportDateType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 财务分析数据爬取
  */
 public abstract class FinancialSpider implements Spider {
+
+    private static Logger LOG = LoggerFactory.getLogger(FinancialSpider.class);
 
     @Override
     public void spider(String stock) {
@@ -23,6 +27,7 @@ public abstract class FinancialSpider implements Spider {
             // 按年度查询
             crawl4NEEQ(stock, ReportDateType.YEAR);
         }
+        LOG.info("抓取财务数据成功,stock={}", stock);
     }
 
     /**

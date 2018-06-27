@@ -127,7 +127,7 @@
         minority_shareholder_oci,
         sumci,
         parent_compay_ci,
-        minority_shareholder_ci,
+        minority_shareholder_ci
 ) VALUES (
         #{item.securityCode},
         #{item.reportDate},
@@ -188,7 +188,7 @@
         #{item.minorityShareholderOCI},
         #{item.sumci},
         #{item.parentCompayCI},
-        #{item.minorityShareholderCI},
+        #{item.minorityShareholderCI}
 )ON DUPLICATE KEY UPDATE
         stock_type = VALUES(stock_type),
         gross_revenue = VALUES(gross_revenue),
@@ -246,6 +246,6 @@
         minority_shareholder_oci = VALUES(minority_shareholder_oci),
         sumci = VALUES(sumci),
         parent_compay_ci = VALUES(parent_compay_ci),
-        minority_shareholder_ci = VALUES(minority_shareholder_ci),
+        minority_shareholder_ci = VALUES(minority_shareholder_ci)
     </insert>
 </mapper>

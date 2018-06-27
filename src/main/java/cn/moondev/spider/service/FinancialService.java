@@ -27,7 +27,7 @@ public class FinancialService {
      *
      * @param stock
      */
-    public void crawlFinancialDataFromEashMoney(String stock) {
+    public void crawlFinancialDataFromEastMoney(String stock) {
         spiders.parallelStream().forEach(spider -> spider.spider(stock));
     }
 }

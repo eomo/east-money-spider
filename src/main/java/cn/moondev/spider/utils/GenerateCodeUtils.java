@@ -13,14 +13,14 @@ public class GenerateCodeUtils {
 
     public static void main(String[] args) throws Exception {
 //        mybatisMap("BalanceSheet");
-        mybatisMap("IncomeStatement");
-//        mybatisMap("CashFlowStatement");
+//        mybatisMap("IncomeStatement");
+        mybatisMap("CashFlowStatement");
 //        insertSQL("BalanceSheet");
-//        insertSQL("CashFlowStatement");
-        insertSQL("IncomeStatement");
+        insertSQL("CashFlowStatement");
+//        insertSQL("IncomeStatement");
 //        createTableSQL("BalanceSheet");
-//        createTableSQL("CashFlowStatement");
-        createTableSQL("IncomeStatement");
+        createTableSQL("CashFlowStatement");
+//        createTableSQL("IncomeStatement");
 //        getterAndSetter("BalanceSheet");
 //        getterAndSetter("CashFlowStatement");
 //        getterAndSetter("IncomeStatement");
