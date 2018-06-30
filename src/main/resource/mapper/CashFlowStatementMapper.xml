@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.moondev.spider.mapper.CashFlowStatementMapper">
 
-    <resultMap id="prospectusMap" type="cn.moondev.spider.model.CashFlowStatement">
+    <resultMap id="cashFlowMap" type="cn.moondev.spider.model.CashFlowStatement">
         <id column="id" property="id"/>
         <result column="date_type" property="dateType"/>
         <result column="security_code" property="securityCode"/>

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.moondev.spider.mapper.BalanceSheetMapper">
 
-    <resultMap id="prospectusMap" type="cn.moondev.spider.model.BalanceSheet">
+    <resultMap id="balanceSheetMap" type="cn.moondev.spider.model.BalanceSheet">
         <id column="id" property="id"/>
         <result column="security_code" property="securityCode"/>
         <result column="report_date" property="reportDate"/>
