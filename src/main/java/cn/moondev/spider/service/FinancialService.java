@@ -1,7 +1,7 @@
 package cn.moondev.spider.service;
 
 import cn.moondev.framework.provider.excel.utils.ImportExcelUtils;
-import cn.moondev.spider.out.Stock;
+import cn.moondev.spider.model.Stock;
 import cn.moondev.spider.spider.FinancialSpider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

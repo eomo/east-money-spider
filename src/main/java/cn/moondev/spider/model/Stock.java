@@ -1,14 +1,20 @@
-package cn.moondev.spider.out;
+package cn.moondev.spider.model;
 
 import cn.moondev.framework.provider.excel.annotation.ExcelColumn;
 import cn.moondev.framework.provider.excel.annotation.ExcelSheet;
 
-@ExcelSheet(name = "新三板数据")
+/**
+ * 股票模型
+ */
+@ExcelSheet(name = "创业板")
 public class Stock {
 
     // 代码
     @ExcelColumn(name = "代码")
     public String stockCode;
+
+    // 类型
+    public String stockType;
 
     // 名称
     @ExcelColumn(name = "名称")
@@ -83,32 +89,35 @@ public class Stock {
     public Float totalAssetForListingYear;
 
     // 挂牌前是否有投资机构进入
-    @ExcelColumn(name = "挂牌前是否有投资机构进入")
-    public int pevcInvestBeforeListing;
+    @ExcelColumn(name = "挂牌前是否有投资机构进入",replace = {"是_Y","否_N"})
+    public String pevcInvestBeforeListing;
 
     // 是否有对赌条款
-    @ExcelColumn(name = "是否有对赌条款")
-    public int putOptions;
+    @ExcelColumn(name = "是否有对赌条款",replace = {"是_Y","否_N"})
+    public String putOptions;
 
     // 约定IPO
     @ExcelColumn(name = "约定IPO")
-    public int arrangeIpo;
+    public String arrangeIpo;
 
     // 约定业绩
     @ExcelColumn(name = "约定业绩")
-    public int arrangePerformance;
+    public String arrangePerformance;
 
     // 同时约定IPO和业绩
     @ExcelColumn(name = "同时约定IPO和业绩")
-    public int arrangeIpoPerformance;
+    public String arrangeIpoPerformance;
+
+    // 对赌类型：1 约定IPO，2 约定业绩，3 同时约定IPO和业绩
+    public String putOptionsType;
 
     // 从申报挂牌到挂牌日定向增发金额
     @ExcelColumn(name = "从申报挂牌到挂牌日定向增发金额")
     public Float additionalAmountBeforeListing;
 
     // 挂牌当日是否有定向增发
-    @ExcelColumn(name = "挂牌当日是否有定向增发")
-    public int isAdditionalAmountListingToday;
+    @ExcelColumn(name = "挂牌当日是否有定向增发",replace = {"是_Y","否_N"})
+    public String isAdditionalAmountListingToday;
 
     // 定向增发金额(万元)
     @ExcelColumn(name = "定向增发金额(万元)")

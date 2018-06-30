@@ -2,6 +2,7 @@ package cn.moondev.spider.controller;
 
 import cn.moondev.spider.service.FinancialService;
 import cn.moondev.spider.service.ProspectusService;
+import cn.moondev.spider.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,10 +17,18 @@ public class ManualController {
     private ProspectusService prospectusService;
     @Autowired
     private FinancialService financialService;
+    @Autowired
+    private StockService stockService;
 
     @RequestMapping(value = "/finanical", method = RequestMethod.GET)
     public String financial(@RequestParam(required = false) String stock) {
-        financialService.crawlFinancialDataFromEastMoney();
+//        financialService.crawlFinancialDataFromEastMoney();
+        try {
+
+            stockService.importDateFromExcel();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "success";
     }
 }

@@ -6,7 +6,11 @@ public class ModelClassInfo {
     public String mysqlField;
     public String content;
     public String jsonFiled;
+    public String modifier;
 
+    public ModelClassInfo(){
+
+    }
     public ModelClassInfo(String field,String content) {
         this.field = field;
         this.jsonFiled = jsonFiled;

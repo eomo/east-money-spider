@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.moondev.spider.mapper.StockMapper">
+
+    <resultMap id="prospectusMap" type="cn.moondev.spider.model.Stock">
+        <id column="id" property="id"/>
+        <result column="stock_code" property="stockCode"/>
+        <result column="stock_type" property="stockType"/>
+        <result column="stock_name" property="stockName"/>
+        <result column="level" property="level"/>
+        <result column="transfer" property="transfer"/>
+        <result column="supervision" property="supervision"/>
+        <result column="capital" property="capital"/>
+        <result column="limited_company_create_date" property="limitedCompanyCreateDate"/>
+        <result column="stock_company_create_date" property="stockCompanyCreateDate"/>
+        <result column="apply_listing_date" property="applyListingDate"/>
+        <result column="listing_date" property="listingDate"/>
+        <result column="total_asset_two_year_before_listing" property="totalAssetTwoYearBeforeListing"/>
+        <result column="net_asset_two_year_before_listing" property="netAssetTwoYearBeforeListing"/>
+        <result column="operating_receipt_two_year_before_listing" property="operatingReceiptTwoYearBeforeListing"/>
+        <result column="net_profit_two_year_before_listing" property="netProfitTwoYearBeforeListing"/>
+        <result column="total_asset_one_year_before_listing" property="totalAssetOneYearBeforeListing"/>
+        <result column="net_asset_one_year_before_listing" property="netAssetOneYearBeforeListing"/>
+        <result column="operating_receipt_one_year_before_listing" property="operatingReceiptOneYearBeforeListing"/>
+        <result column="net_profit_one_year_before_listing" property="netProfitOneYearBeforeListing"/>
+        <result column="total_asset_for_listing_year" property="totalAssetForListingYear"/>
+        <result column="pevc_invest_before_listing" property="pevcInvestBeforeListing"/>
+        <result column="put_options" property="putOptions"/>
+        <result column="put_options_type" property="putOptionsType"/>
+        <result column="additional_amount_before_listing" property="additionalAmountBeforeListing"/>
+        <result column="is_additional_amount_listing_today" property="isAdditionalAmountListingToday"/>
+        <result column="additional_amount" property="additionalAmount"/>
+        <result column="max_sharehold_ratio" property="maxShareholdRatio"/>
+        <result column="market_value_listing_today" property="marketValueListingToday"/>
+        <result column="market_value_five_day_before_listing" property="marketValueFiveDayBeforeListing"/>
+        <result column="market_value_twenty_day_before_listing" property="marketValueTwentyDayBeforeListing"/>
+        <result column="park" property="park"/>
+    </resultMap>
+
+    <insert id="upsert">
+        INSERT INTO t_stock(
+        stock_code,
+        stock_type,
+        stock_name,
+        `level`,
+        transfer,
+        supervision,
+        capital,
+        limited_company_create_date,
+        stock_company_create_date,
+        apply_listing_date,
+        listing_date,
+        total_asset_two_year_before_listing,
+        net_asset_two_year_before_listing,
+        operating_receipt_two_year_before_listing,
+        net_profit_two_year_before_listing,
+        total_asset_one_year_before_listing,
+        net_asset_one_year_before_listing,
+        operating_receipt_one_year_before_listing,
+        net_profit_one_year_before_listing,
+        total_asset_for_listing_year,
+        pevc_invest_before_listing,
+        put_options,
+        put_options_type,
+        additional_amount_before_listing,
+        is_additional_amount_listing_today,
+        additional_amount,
+        max_sharehold_ratio,
+        market_value_listing_today,
+        market_value_five_day_before_listing,
+        market_value_twenty_day_before_listing,
+        park,
+        industry
+) VALUES (
+        #{item.stockCode},
+        #{item.stockType},
+        #{item.stockName},
+        #{item.level},
+        #{item.transfer},
+        #{item.supervision},
+        #{item.capital},
+        #{item.limitedCompanyCreateDate},
+        #{item.stockCompanyCreateDate},
+        #{item.applyListingDate},
+        #{item.listingDate},
+        #{item.totalAssetTwoYearBeforeListing},
+        #{item.netAssetTwoYearBeforeListing},
+        #{item.operatingReceiptTwoYearBeforeListing},
+        #{item.netProfitTwoYearBeforeListing},
+        #{item.totalAssetOneYearBeforeListing},
+        #{item.netAssetOneYearBeforeListing},
+        #{item.operatingReceiptOneYearBeforeListing},
+        #{item.netProfitOneYearBeforeListing},
+        #{item.totalAssetForListingYear},
+        #{item.pevcInvestBeforeListing},
+        #{item.putOptions},
+        #{item.putOptionsType},
+        #{item.additionalAmountBeforeListing},
+        #{item.isAdditionalAmountListingToday},
+        #{item.additionalAmount},
+        #{item.maxShareholdRatio},
+        #{item.marketValueListingToday},
+        #{item.marketValueFiveDayBeforeListing},
+        #{item.marketValueTwentyDayBeforeListing},
+        #{item.park},
+        #{item.industry}
+)ON DUPLICATE KEY UPDATE
+        stock_name = VALUES(stock_name),
+        `level` = VALUES(level),
+        transfer = VALUES(transfer),
+        supervision = VALUES(supervision),
+        capital = VALUES(capital),
+        limited_company_create_date = VALUES(limited_company_create_date),
+        stock_company_create_date = VALUES(stock_company_create_date),
+        apply_listing_date = VALUES(apply_listing_date),
+        listing_date = VALUES(listing_date),
+        total_asset_two_year_before_listing = VALUES(total_asset_two_year_before_listing),
+        net_asset_two_year_before_listing = VALUES(net_asset_two_year_before_listing),
+        operating_receipt_two_year_before_listing = VALUES(operating_receipt_two_year_before_listing),
+        net_profit_two_year_before_listing = VALUES(net_profit_two_year_before_listing),
+        total_asset_one_year_before_listing = VALUES(total_asset_one_year_before_listing),
+        net_asset_one_year_before_listing = VALUES(net_asset_one_year_before_listing),
+        operating_receipt_one_year_before_listing = VALUES(operating_receipt_one_year_before_listing),
+        net_profit_one_year_before_listing = VALUES(net_profit_one_year_before_listing),
+        total_asset_for_listing_year = VALUES(total_asset_for_listing_year),
+        pevc_invest_before_listing = VALUES(pevc_invest_before_listing),
+        put_options = VALUES(put_options),
+        put_options = VALUES(put_options_type),
+        additional_amount_before_listing = VALUES(additional_amount_before_listing),
+        is_additional_amount_listing_today = VALUES(is_additional_amount_listing_today),
+        additional_amount = VALUES(additional_amount),
+        max_sharehold_ratio = VALUES(max_sharehold_ratio),
+        market_value_listing_today = VALUES(market_value_listing_today),
+        market_value_five_day_before_listing = VALUES(market_value_five_day_before_listing),
+        market_value_twenty_day_before_listing = VALUES(market_value_twenty_day_before_listing),
+        park = VALUES(park),
+        industry = VALUES(industry)
+    </insert>
+</mapper>
