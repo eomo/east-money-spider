@@ -22,13 +22,7 @@ public class ManualController {
 
     @RequestMapping(value = "/finanical", method = RequestMethod.GET)
     public String financial(@RequestParam(required = false) String stock) {
-//        financialService.crawlFinancialDataFromEastMoney();
-        try {
-
-            stockService.importDateFromExcel();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        financialService.crawlFinancialDataFromEastMoney();
         return "success";
     }
 }

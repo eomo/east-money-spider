@@ -6,7 +6,7 @@ import cn.moondev.framework.provider.excel.annotation.ExcelSheet;
 /**
  * 股票模型
  */
-@ExcelSheet(name = "创业板")
+@ExcelSheet(name = "新三板数据")
 public class Stock {
 
     // 代码

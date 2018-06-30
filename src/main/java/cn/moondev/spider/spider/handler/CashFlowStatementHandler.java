@@ -27,11 +27,11 @@ public class CashFlowStatementHandler implements ResponseHandler<CashFlowStateme
 
     @Override
     public List<CashFlowStatement> convert(String content) {
-        content = content.substring(1, content.length() - 1).replace("\\", "");
-        if ("null".equalsIgnoreCase(content)) {
+        if ("\"null\"".equalsIgnoreCase(content)) {
             return Lists.newArrayList();
         }
-        JSONArray array = JSONObject.parseArray(content);
+        JSONObject jsonObject = JSONObject.parseObject(content);
+        JSONArray array = jsonObject.getJSONArray("result");
         return array.stream().map(o -> new CashFlowStatement((JSONObject) o)).collect(Collectors.toList());
     }
 

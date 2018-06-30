@@ -31,12 +31,12 @@ public class StockService {
      * 从东方财富网抓取财务分析数据
      */
     public void importDateFromExcel() throws Exception {
-        List<Stock> stocks = ImportExcelUtils.doImport("D:\\WORKSPACE\\data\\一阶段数据样本\\模型设计.xls", Stock.class);
+        List<Stock> stocks = ImportExcelUtils.doImport("/Users/Moon/Downloads/一阶段数据样本/模型设计.xls", Stock.class);
         for (Stock stock : stocks) {
-            if (stock.stockCode.length() > 6) {
-                stock.stockCode = stock.stockCode.substring(0,6);
+            if (stock.supervision.length() > 1) {
+                stock.supervision = "-";
             }
-            stock.stockType = "GEM";
+            stock.stockType = "NEEQ";
             Field[] fields = Stock.class.getDeclaredFields();
             for (Field field : fields) {
                 if (field.getType().equals(String.class)) {
