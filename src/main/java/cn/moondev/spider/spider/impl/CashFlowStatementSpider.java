@@ -39,7 +39,7 @@ public class CashFlowStatementSpider extends FinancialSpider {
         request.requestParams.put("reportType", reportType);
         request.requestParams.put("endDate", endDate);
         request.requestParams.put("code", "sz" + stock);
-        List<CashFlowStatement> cashFlowStatements = okHttpOperations.syncRequest(request, new CashFlowStatementHandler());
+        List<CashFlowStatement> cashFlowStatements = okHttpOperations.syncRequest(request, new CashFlowStatementHandler(StockType.GEM.toString()));
         if (CollectionUtils.isEmpty(cashFlowStatements)) {
             return;
         }
