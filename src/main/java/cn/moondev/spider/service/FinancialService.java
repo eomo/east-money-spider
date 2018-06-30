@@ -1,5 +1,7 @@
 package cn.moondev.spider.service;
 
+import cn.moondev.framework.provider.excel.utils.ImportExcelUtils;
+import cn.moondev.spider.out.Stock;
 import cn.moondev.spider.spider.FinancialSpider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,10 +26,11 @@ public class FinancialService {
 
     /**
      * 从东方财富网抓取财务分析数据
-     *
-     * @param stock
      */
-    public void crawlFinancialDataFromEastMoney(String stock) {
-        spiders.parallelStream().forEach(spider -> spider.spider(stock));
+    public void crawlFinancialDataFromEastMoney() {
+        List<Stock> stocks = ImportExcelUtils.doImport("D:\\WORKSPACE\\data\\一阶段数据样本\\模型设计.xls", Stock.class);
+        for (Stock stock : stocks) {
+            spiders.parallelStream().forEach(spider -> spider.spider(stock.stockCode.substring(0, 6)));
+        }
     }
 }

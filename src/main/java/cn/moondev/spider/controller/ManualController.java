@@ -19,7 +19,7 @@ public class ManualController {
 
     @RequestMapping(value = "/finanical", method = RequestMethod.GET)
     public String financial(@RequestParam(required = false) String stock) {
-        financialService.crawlFinancialDataFromEastMoney(stock);
+        financialService.crawlFinancialDataFromEastMoney();
         return "success";
     }
 }
