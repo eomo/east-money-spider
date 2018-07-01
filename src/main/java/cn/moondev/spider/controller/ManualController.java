@@ -1,5 +1,6 @@
 package cn.moondev.spider.controller;
 
+import cn.moondev.spider.service.CompanyService;
 import cn.moondev.spider.service.FinancialService;
 import cn.moondev.spider.service.ProspectusService;
 import cn.moondev.spider.service.StockService;
@@ -19,10 +20,18 @@ public class ManualController {
     private FinancialService financialService;
     @Autowired
     private StockService stockService;
+    @Autowired
+    private CompanyService companyService;
 
     @RequestMapping(value = "/finanical", method = RequestMethod.GET)
     public String financial(@RequestParam(required = false) String stock) {
         financialService.crawlFinancialDataFromEastMoney();
+        return "success";
+    }
+
+    @RequestMapping(value = "/company", method = RequestMethod.GET)
+    public String company() {
+        companyService.crawlCompanyDataFromEastMoney();
         return "success";
     }
 }

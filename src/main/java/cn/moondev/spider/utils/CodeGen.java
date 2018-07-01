@@ -1,6 +1,5 @@
 package cn.moondev.spider.utils;
 
-import cn.moondev.spider.utils.ModelClassInfo;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 
@@ -9,29 +8,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.List;
 
-public class GenerateCodeUtils {
+public class CodeGen {
 
     public static void main(String[] args) throws Exception {
-//        mybatisMap("BalanceSheet");
-//        mybatisMap("IncomeStatement");
-        mybatisMap("CashFlowStatement");
-//        insertSQL("BalanceSheet");
-        insertSQL("CashFlowStatement");
-//        insertSQL("IncomeStatement");
-//        createTableSQL("BalanceSheet");
-        createTableSQL("CashFlowStatement");
-//        createTableSQL("IncomeStatement");
-//        getterAndSetter("BalanceSheet");
-//        getterAndSetter("CashFlowStatement");
-//        getterAndSetter("IncomeStatement");
-    }
-
-    public static void getterAndSetter(String javaName) throws Exception {
-        List<ModelClassInfo> cdxList = getCDXList(javaName);
-        for (ModelClassInfo cdx : cdxList) {
-            String str = "this." + cdx.field + " = NumberUtils.convertCent(json.getString(\""+cdx.jsonFiled+"\"));";
-            System.out.println(str);
-        }
+        insertSQL("Company");
     }
 
     /**
@@ -40,16 +20,22 @@ public class GenerateCodeUtils {
      * @param javaName
      * @throws Exception
      */
-    public static void createTableSQL(String javaName) throws Exception {
-        List<ModelClassInfo> cdxList = getCDXList(javaName);
+    public static void createTableSQL() throws Exception {
+        List<ModelClassInfo> cdxList = getModelList();
         StringBuilder sb = new StringBuilder();
-        sb.append("CREATE TABLE ").append("t" + mysqlField(javaName)).append("(").append("\n");
+        sb.append("CREATE TABLE ").append("t_company").append("(").append("\n");
         sb.append("        id BIGINT PRIMARY KEY AUTO_INCREMENT,");
         for (ModelClassInfo cdx : cdxList) {
             sb.append("        ");
-            sb.append(cdx.mysqlField).append(" ").append("BIGINT NOT NULL DEFAULT 0 COMMENT '").append(cdx.content).append("',").append("\n");
+            if ("string".equalsIgnoreCase(cdx.modifier)) {
+                sb.append(cdx.mysqlField).append(" ").append("VARCHAR(64) NOT NULL DEFAULT '' COMMENT '").append(cdx.content).append("',").append("\n");
+            } else if ("float".equalsIgnoreCase(cdx.modifier)) {
+                sb.append(cdx.mysqlField).append(" ").append("FLOAT NOT NULL DEFAULT 0 COMMENT '").append(cdx.content).append("',").append("\n");
+            } else {
+                sb.append(cdx.mysqlField).append(" ").append("BIGINT NOT NULL DEFAULT 0 COMMENT '").append(cdx.content).append("',").append("\n");
+            }
         }
-        sb.append("        UNIQUE KEY unique_index_code_date(`security_code`,`report_date`,`date_type`)").append("\n");
+        sb.append("        UNIQUE KEY unique_index_code(`stock_code`)").append("\n");
         sb.append(")ENGINE=INNODB DEFAULT CHARSET=utf8mb4;");
         System.out.println(sb.toString());
     }
@@ -58,7 +44,7 @@ public class GenerateCodeUtils {
      * 生成insert语句
      */
     public static void insertSQL(String javaName) throws Exception {
-        List<ModelClassInfo> cdxList = getCDXList(javaName);
+        List<ModelClassInfo> cdxList = getModelList();
         StringBuilder sb = new StringBuilder();
         sb.append("INSERT INTO ").append("t" + mysqlField(javaName)).append("(").append("\n");
         for (ModelClassInfo cdx : cdxList) {
@@ -82,46 +68,50 @@ public class GenerateCodeUtils {
     /**
      * 生成mybatis resultMap
      */
-    public static void mybatisMap(String javaName) throws Exception {
-        List<ModelClassInfo> cdxList = getCDXList(javaName);
+    public static void mybatisMap() throws Exception {
+        List<ModelClassInfo> cdxList = getModelList();
         for (ModelClassInfo cdx : cdxList) {
             String format = "<result column=\"%s\" property=\"%s\"/>";
             System.out.println(String.format(format, cdx.mysqlField, cdx.field));
         }
     }
 
-
-    public static List<ModelClassInfo> getCDXList(String javaName) throws Exception {
-        File file = new File("/Users/Moon/WorkSpace/github.com/east-money-spider/src/main/java/cn/moondev/spider/model/" + javaName + ".java");
+    public static List<ModelClassInfo> getModelList() throws Exception {
+        File file = new File("D:\\WORKSPACE\\github.com\\east-money-spider\\src\\main\\java\\cn\\moondev\\spider\\model\\Company.java");
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line;
+        List<ModelClassInfo> cdxList = Lists.newArrayList();
+        String modifier = "";
         String content = "";
         String field = "";
-        List<ModelClassInfo> cdxList = Lists.newArrayList();
+        ModelClassInfo mode;
         while ((line = reader.readLine()) != null) {
-            // 获取注释
             if (line.contains("//")) {
-                content = line.substring(7);
+                content =  line.substring(7);
             }
-            if (line.contains("public String") || line.contains("public long")) {
+            if (line.contains("public") && !line.contains("class")) {
                 if (line.contains("public String")) {
                     field = line.substring(18);
+                    modifier = "string";
+                } else if (line.contains("public Float")){
+                    field = line.substring(17);
+                    modifier = "float";
                 } else {
-                    field = line.substring(16);
+                    field = line.substring(19);
+                    modifier = "integer";
                 }
             }
             if (!Strings.isNullOrEmpty(content) && !Strings.isNullOrEmpty(field)) {
-                cdxList.add(new ModelClassInfo(field.substring(0, field.length() - 1),content));
+                mode = new ModelClassInfo(field.substring(0, field.length() - 1),content);
+                mode.modifier = modifier;
+                mode.mysqlField = mysqlField(field);
+                cdxList.add(mode);
                 content = "";
                 field = "";
             }
         }
-        for (ModelClassInfo cdx : cdxList) {
-            cdx.mysqlField = mysqlField(cdx.field);
-        }
         return cdxList;
     }
-
 
     public static String mysqlField(String field) {
         StringBuilder sb = new StringBuilder();

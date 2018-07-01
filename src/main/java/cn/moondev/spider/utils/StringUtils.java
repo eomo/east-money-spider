@@ -1,5 +1,7 @@
 package cn.moondev.spider.utils;
 
+import com.google.common.base.Strings;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -22,5 +24,20 @@ public class StringUtils {
         reportDate = reportDate.substring(0, reportDate.length() - 8);
         LocalDate date = LocalDate.parse(reportDate, DateTimeFormatter.ofPattern("yyyy/M/d"));
         return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
+
+    /**
+     * 返回非空的字符串
+     *
+     * @param strs
+     * @return
+     */
+    public static String notEmptyStr(String... strs) {
+        for (String string : strs) {
+            if (!Strings.isNullOrEmpty(string)) {
+                return string;
+            }
+        }
+        return "";
     }
 }
