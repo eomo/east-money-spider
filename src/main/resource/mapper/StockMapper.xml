@@ -140,4 +140,13 @@
     <select id="getAllStock" resultMap="stockMap">
         SELECT stock_code FROM t_stock;
     </select>
+
+    <select id="getStockNotInCompany" resultMap="stockMap">
+        SELECT
+            stock_code
+        FROM
+            t_stock s
+        WHERE
+            NOT EXISTS ( SELECT stock_code FROM t_company c WHERE c.stock_code = s.stock_code );
+    </select>
 </mapper>

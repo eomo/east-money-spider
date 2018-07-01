@@ -3,6 +3,7 @@ package cn.moondev.spider.utils;
 import com.google.common.base.Strings;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class NumberUtils {
 
@@ -17,5 +18,16 @@ public class NumberUtils {
             return new BigDecimal(amount).multiply(new BigDecimal(100)).longValue();
         }
         return 0;
+    }
+
+    public static int parseInt(Object number) {
+        if (Objects.isNull(number)) {
+            return 0;
+        }
+        try {
+            return Integer.parseInt(number.toString());
+        } catch (Exception e) {
+            return 0;
+        }
     }
 }

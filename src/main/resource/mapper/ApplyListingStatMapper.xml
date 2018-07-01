@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.moondev.spider.mapper.ApplyListingStatMapper">
+
+    <resultMap id="listingStatMap" type="cn.moondev.spider.model.ApplyListingStat">
+        <id column="id" property="id"/>
+        <result column="company_name" property="companyName"/>
+        <result column="province" property="province"/>
+        <result column="industry" property="industry"/>
+        <result column="apply_listing_date" property="applyListingDate"/>
+    </resultMap>
+
+    <insert id="upsert">
+        INSERT INTO t_apply_listing_stat(
+            company_name,
+            province,
+            industry,
+            apply_listing_date
+        ) VALUES (
+            #{item.companyName},
+            #{item.province},
+            #{item.industry},
+            #{item.applyListingDate}
+        )ON DUPLICATE KEY UPDATE
+            province = VALUES(province),
+            industry = VALUES(industry),
+            apply_listing_date = VALUES(apply_listing_date)
+    </insert>
+
+    <select id="getAllListingDate" resultMap="listingStatMap">
+        SELECT
+            company_name,
+            province,
+            industry,
+            apply_listing_date
+        FROM
+            t_apply_listing_stat
+    </select>
+</mapper>

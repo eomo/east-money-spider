@@ -32,6 +32,7 @@ public class ManualController {
     @RequestMapping(value = "/company", method = RequestMethod.GET)
     public String company() {
         companyService.crawlCompanyDataFromEastMoney();
+        companyService.importListingDateFromExcel("D:\\WORKSPACE\\data\\一阶段数据样本\\新三板企业挂牌日期表.xls");
         return "success";
     }
 }

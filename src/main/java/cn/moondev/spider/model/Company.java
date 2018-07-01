@@ -1,5 +1,6 @@
 package cn.moondev.spider.model;
 
+import cn.moondev.spider.utils.NumberUtils;
 import cn.moondev.spider.utils.StringUtils;
 import com.alibaba.fastjson.JSONObject;
 
@@ -9,102 +10,103 @@ public class Company {
     // 公司名称
     public String companyName;
     // 转让方式(新三板)
-    public String transfer;
+    public String transfer = "";
     // 市场分层(新三板)
-    public String level;
+    public String level = "";
     // 持续督导券商(新三板)
-    public String supervision;
+    public String supervision = "";
     // 推荐挂牌券商(新三板)
-    public String listingSupervision;
+    public String listingSupervision = "";
     // 英文名称
-    public String englishName;
+    public String englishName = "";
     // 股票代码
     public String stockCode;
     // 股票类型
     public String stockType;
     // 股票简称
-    public String stockShortName;
+    public String stockShortName = "";
     // 证券类别
-    public String bondType;
+    public String bondType = "";
     // 所属证监会行业
-    public String industry;
+    public String industry = "";
     // 上市交易所
-    public String exchange;
+    public String exchange = "";
     // 法人代表
-    public String legalPerson;
+    public String legalPerson = "";
     // 董事长
-    public String chairman;
+    public String chairman = "";
     // 董秘
-    public String secretary;
+    public String secretary = "";
     // 联系电话
-    public String contact;
+    public String contact = "";
     // 电子信箱
-    public String email;
+    public String email = "";
     // 传真
-    public String fax;
+    public String fax = "";
     // 公司网址
-    public String website;
+    public String website = "";
     // 办公地址
-    public String officeAddress;
+    public String officeAddress = "";
     // 注册地址
-    public String registerAddress;
+    public String registerAddress = "";
     // 注册资本
-    public String capital;
+    public String capital = "";
     // 工商登记
-    public String businessRegist;
+    public String businessRegist = "";
     // 雇员人数
     public int employeeNum;
     // 管理人员人数
     public int managerNum;
     // 律师事务所
-    public String lawOffice;
+    public String lawOffice = "";
     // 会计师事务所
-    public String accountingFirm;
+    public String accountingFirm = "";
     // 公司简介
-    public String brief;
+    public String brief = "";
     // 经营范围
-    public String businessScope;
+    public String businessScope = "";
     // 成立日期
-    public String establishDate;
+    public String establishDate = "";
     // 上市/挂牌日期
-    public String listingDate;
+    public String listingDate = "";
     // 发行市盈率(倍)
-    public String ipopeRatio;
+    public String ipopeRatio = "";
     // 网上发行日期
-    public String issueDate;
+    public String issueDate = "";
     // 首次交易日(新三板)
-    public String firstTradeDate;
+    public String firstTradeDate = "";
     // 发行方式
-    public String issueWay;
+    public String issueWay = "";
     // 每股面值(元)
-    public String perShareValue;
+    public String perShareValue = "";
     // 发行量(股)/总股本
-    public String circulation;
+    public String circulation = "";
     // 流通股本
-    public String flowEquity;
+    public String flowEquity = "";
     // 每股发行价(元)
-    public String perSharePrice;
+    public String perSharePrice = "";
     // 发行费用(元)
-    public String issueCost;
+    public String issueCost = "";
     // 发行总市值(元)
-    public String marketValue;
+    public String marketValue = "";
     // 募集资金净额(元)
-    public String placement;
+    public String placement = "";
     // 首日开盘价(元)
-    public String openPriceFirstDay;
+    public String openPriceFirstDay = "";
     // 首日收盘价(元)
-    public String closePriceFirstDay;
+    public String closePriceFirstDay = "";
     // 首日换手率
-    public String turnoverRateFirstDay;
+    public String turnoverRateFirstDay = "";
     // 首日最高价(元)
-    public String maxPriceFirstDay;
+    public String maxPriceFirstDay = "";
     // 网下配售中签率
-    public String offlineLotWinningRate;
+    public String offlineLotWinningRate = "";
     // 定价中签率
-    public String pricingLotWinningRate;
+    public String pricingLotWinningRate = "";
 
     public Company(JSONObject json) {
-        this.stockCode = StringUtils.notEmptyStr(json.getString("agdm"), json.getString("bgdm"), json.getString("hgdm"));
+        this.stockType = "GEM";
+        this.stockCode = StringUtils.notEmptyStr(json.getString("agdm"), json.getString("bgdm"), json.getString("hgdm")).substring(0,6);
         this.stockShortName = StringUtils.notEmptyStr(json.getString("agjc"), json.getString("bgjc"), json.getString("bgjc"));
         this.officeAddress = json.getString("bgdz");
         this.fax = json.getString("cz");
@@ -148,6 +150,7 @@ public class Company {
     }
 
     public Company(Map<String, String> map) {
+        this.stockType = "NEEQ";
         this.stockCode = map.get("证券代码");
         this.listingDate = map.get("挂牌日期");
         this.transfer = map.get("转让方式");
@@ -158,20 +161,20 @@ public class Company {
         this.chairman = map.get("实际控制人");
         this.legalPerson = map.get("法人代表");
         this.contact = map.get("公司电话");
-        this.email = map.get("公司邮箱 ");
+        this.email = map.get("公司邮箱");
         this.accountingFirm = map.get("会记事务所");
         this.businessScope = map.get("主营业务");
         this.industry = map.get("行业分类");
         this.registerAddress = map.get("注册地址");
         this.officeAddress = map.get("办公地址");
-        this.brief = map.get("公司简介 ");
+        this.brief = map.get("公司简介");
         this.stockShortName = map.get("证券简称");
         this.firstTradeDate = map.get("首次交易日");
         this.level = map.get("市场分层");
         this.flowEquity = map.get("流通股本(万股)");
         this.supervision = map.get("持续督导券商");
         this.capital = map.get("注册资本(亿元)");
-        this.employeeNum = Integer.valueOf(map.get("员工总数"));
+        this.employeeNum = NumberUtils.parseInt(map.get("员工总数"));
         this.secretary = map.get("公司董秘");
         this.fax = map.get("公司传真");
         this.website = map.get("公司网址");

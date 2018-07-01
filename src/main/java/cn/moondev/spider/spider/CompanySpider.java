@@ -14,12 +14,14 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class CompanySpider implements Spider {
 
     private static final Logger LOG = LoggerFactory.getLogger(CompanySpider.class);
@@ -57,7 +59,7 @@ public class CompanySpider implements Spider {
         request.requestHeader.put("Referer", "http://emweb.securities.eastmoney.com/CompanySurvey/Index?type=web&code=sz" + stock);
         request.requestHeader.put("X-Requested-With", "XMLHttpRequest");
         request.requestParams.put("code", "sz" + stock);
-        List<Company> companies = okHttpOperations.syncRequest(request, new CompanyHandler(StockType.NEEQ.toString()));
+        List<Company> companies = okHttpOperations.syncRequest(request, new CompanyHandler(StockType.GEM.toString()));
         if (!CollectionUtils.isEmpty(companies)) {
             for (Company company : companies) {
                 companyMapper.upsert(company);
