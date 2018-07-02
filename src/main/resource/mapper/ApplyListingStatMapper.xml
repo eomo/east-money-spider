@@ -8,6 +8,7 @@
         <result column="province" property="province"/>
         <result column="industry" property="industry"/>
         <result column="apply_listing_date" property="applyListingDate"/>
+        <result column="stock_code" property="stockCode"/>
     </resultMap>
 
     <insert id="upsert">
@@ -29,11 +30,26 @@
 
     <select id="getAllListingDate" resultMap="listingStatMap">
         SELECT
+            id,
             company_name,
             province,
             industry,
-            apply_listing_date
+            apply_listing_date,
+            stock_code
         FROM
             t_apply_listing_stat
+    </select>
+
+    <update id="updateStockCode">
+        UPDATE t_apply_listing_stat
+        SET stock_code = #{item.stockCode},
+            company_name = #{item.companyName}
+        WHERE id = ${item.id}
+    </update>
+
+    <select id="getStockCode" resultMap="listingStatMap">
+        SELECT s.id,c.stock_code,c.company_name,s.apply_listing_date
+        FROM t_company c
+        JOIN t_apply_listing_stat s on SUBSTR(c.company_name,3) = s.company_name
     </select>
 </mapper>

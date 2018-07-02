@@ -6,6 +6,8 @@ import java.util.Objects;
 
 public class ApplyListingStat {
 
+    public Long id;
+
     @ExcelColumn(name = "公司名称")
     public String companyName;
 
@@ -17,6 +19,8 @@ public class ApplyListingStat {
 
     @ExcelColumn(name = "申请挂牌日")
     public String applyListingDate;
+
+    public String stockCode;
 
     @Override
     public boolean equals(Object o) {

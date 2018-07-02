@@ -42,9 +42,16 @@ public class ManualController {
     public String company() throws IOException {
         String docPath = String.format("%s%s%s%s%s", ResourceUtils.getURL("").getPath(),
                 "east-money-spider", File.separator, "doc", File.separator);
-        companyService.crawlCompanyDataFromEastMoney();
+//        companyService.crawlCompanyDataFromEastMoney();
         companyService.importListingDateFromExcel(docPath + "新三板企业挂牌日期表.xls");
-        companyService.importPEVCInvestDataFromExcel(docPath + "新三板企业PEVC投资明细.xlsx");
+//        companyService.importPEVCInvestDataFromExcel(docPath + "新三板企业PEVC投资明细.xlsx");
+        return "success";
+    }
+
+    @RequestMapping(value = "/support", method = RequestMethod.GET)
+    public String support() {
+//        companyService.supplyStockCode4ListingDate();
+        companyService.test();
         return "success";
     }
 }

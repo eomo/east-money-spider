@@ -6,6 +6,7 @@ import cn.moondev.spider.mapper.CompanyMapper;
 import cn.moondev.spider.mapper.NeeqPevcInvestMapper;
 import cn.moondev.spider.mapper.StockMapper;
 import cn.moondev.spider.model.ApplyListingStat;
+import cn.moondev.spider.model.Company;
 import cn.moondev.spider.model.NeeqPevcInvest;
 import cn.moondev.spider.model.Stock;
 import cn.moondev.spider.spider.CompanySpider;
@@ -59,6 +60,76 @@ public class CompanyService {
             for (ApplyListingStat model : models) {
                 if (!Strings.isNullOrEmpty(model.companyName)) {
                     applyListingStatMapper.upsert(model);
+                }
+            }
+        }
+    }
+
+    public void supplyStockCode4ListingDate() {
+        List<ApplyListingStat> stats = applyListingStatMapper.getStockCode();
+        for (ApplyListingStat stat : stats) {
+            applyListingStatMapper.updateStockCode(stat);
+        }
+    }
+
+    public void test() {
+        List<ApplyListingStat> stats = applyListingStatMapper.getAllListingDate();
+        for (ApplyListingStat stat : stats) {
+            if (!Strings.isNullOrEmpty(stat.stockCode)) {
+                continue;
+            }
+            String name = stat.companyName.substring(0,2);
+            List<Company> companies = companyMapper.getCompanyByName(name);
+            if (companies.size() > 0) {
+                for (Company company : companies) {
+                    String companyName = company.companyName;
+                    if (companyName.startsWith("黑龙江") || companyName.startsWith("内蒙古")) {
+                        companyName = companyName.substring(3);
+                    }
+                    if (company.companyName.equalsIgnoreCase(stat.companyName)) {
+                        stat.stockCode = company.stockCode;
+                        applyListingStatMapper.updateStockCode(stat);
+                        break;
+                    }
+                    if (company.companyName.substring(2).equalsIgnoreCase(stat.companyName)) {
+                        stat.stockCode = company.stockCode;
+                        applyListingStatMapper.updateStockCode(stat);
+                        break;
+                    }
+                    companyName = company.companyName.substring(2);
+                    if (companyName.startsWith("省") || companyName.startsWith("市")) {
+                        companyName = companyName.substring(1);
+                    }
+                    if (companyName.equalsIgnoreCase(stat.companyName)) {
+                        stat.stockCode = company.stockCode;
+                        applyListingStatMapper.updateStockCode(stat);
+                        break;
+                    }
+                    if (stat.companyName.length() >=6 && companyName.substring(0,6).equalsIgnoreCase(stat.companyName.substring(0,6))) {
+                        stat.stockCode = company.stockCode;
+                        applyListingStatMapper.updateStockCode(stat);
+                        break;
+                    }
+                    if (stat.companyName.length() >=5 && companyName.substring(0,5).equalsIgnoreCase(stat.companyName.substring(0,5))) {
+                        stat.stockCode = company.stockCode;
+                        applyListingStatMapper.updateStockCode(stat);
+                        break;
+                    }
+                    if (companyName.substring(0,4).equalsIgnoreCase(stat.companyName.substring(0,4))) {
+                        stat.stockCode = company.stockCode;
+                        applyListingStatMapper.updateStockCode(stat);
+                        break;
+                    }
+                    if (companyName.substring(0,3).equalsIgnoreCase(stat.companyName.substring(0,3))) {
+                        stat.stockCode = company.stockCode;
+                        applyListingStatMapper.updateStockCode(stat);
+                        break;
+                    }
+                    if (companyName.substring(0,2).equalsIgnoreCase(stat.companyName.substring(0,2))) {
+                        stat.stockCode = company.stockCode;
+                        applyListingStatMapper.updateStockCode(stat);
+                        break;
+                    }
                 }
             }
         }

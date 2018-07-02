@@ -30,7 +30,11 @@ public class ProspectusService {
     public void crawlProspectusFromEastMoney() {
         List<Stock> stocks = stockMapper.getStockNotInOtherBuiness("t_prospectus");
         for (Stock stock : stocks) {
-            prospectusSpider.spider(stock.stockCode);
+            try {
+                prospectusSpider.spider(stock.stockCode);
+            } catch (Exception e) {
+                LOG.error("stock={}", stock, e);
+            }
         }
     }
 

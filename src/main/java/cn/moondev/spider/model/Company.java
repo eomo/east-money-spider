@@ -104,6 +104,10 @@ public class Company {
     // 定价中签率
     public String pricingLotWinningRate = "";
 
+    public Company(){
+
+    }
+
     public Company(JSONObject json) {
         this.stockType = "GEM";
         this.stockCode = StringUtils.notEmptyStr(json.getString("agdm"), json.getString("bgdm"), json.getString("hgdm")).substring(0,6);
@@ -179,5 +183,14 @@ public class Company {
         this.fax = map.get("公司传真");
         this.website = map.get("公司网址");
         this.lawOffice = map.get("律师事务所");
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Company{");
+        sb.append("companyName='").append(companyName).append('\'');
+        sb.append(", stockCode='").append(stockCode).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

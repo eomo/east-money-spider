@@ -439,6 +439,7 @@ CREATE TABLE t_apply_listing_stat(
         province VARCHAR(8) NOT NULL DEFAULT '' COMMENT '省区',
         industry VARCHAR(32) NOT NULL DEFAULT '' COMMENT '行业',
         apply_listing_date VARCHAR(16) NOT NULL DEFAULT '' COMMENT '申请挂牌日',
+        stock_code VARCHAR(8) NOT NULL DEFAULT '' COMMENT '股票代码',
         UNIQUE KEY unique_index_name(`company_name`)
 )ENGINE=INNODB DEFAULT CHARSET=utf8mb4;
 

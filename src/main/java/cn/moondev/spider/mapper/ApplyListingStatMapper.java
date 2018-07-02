@@ -11,5 +11,9 @@ public interface ApplyListingStatMapper {
 
     void upsert(@Param("item") ApplyListingStat model);
 
+    void updateStockCode(@Param("item") ApplyListingStat model);
+
+    List<ApplyListingStat> getStockCode();
+
     List<ApplyListingStat> getAllListingDate();
 }
