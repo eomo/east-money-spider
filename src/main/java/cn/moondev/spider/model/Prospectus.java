@@ -17,7 +17,7 @@ public class Prospectus {
     public String eutime;
     public String securityVarietyCode;
     public String securityTypeCode;
-    public String securityCode;
+    public String stockCode;
     public String securityFullName;
     public String securityShortName;
     public String securityType;
@@ -46,7 +46,7 @@ public class Prospectus {
             JSONObject object = (JSONObject) array.get(0);
             this.securityVarietyCode = object.getString("SECURITYVARIETYCODE");
             this.securityTypeCode = object.getString("SECURITYTYPECODE");
-            this.securityCode = object.getString("SECURITYCODE");
+            this.stockCode = object.getString("SECURITYCODE").substring(0,6);;
             this.securityFullName = object.getString("SECURITYFULLNAME");
             this.securityShortName = object.getString("SECURITYSHORTNAME");
             this.securityType = object.getString("SECURITYTYPE");

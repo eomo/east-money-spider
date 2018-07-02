@@ -12,9 +12,9 @@ public interface StockMapper {
     void upsert(@Param("item") Stock Stock);
 
     /**
-     * 抓取公司信息时，需要先除去已经抓取的数据
+     * 抓取数据时，需要先除去已经抓取的数据
      */
-    List<Stock> getStockNotInCompany();
+    List<Stock> getStockNotInOtherBuiness(@Param("tableName") String tableName);
 
     List<Stock> getAllStock();
 }

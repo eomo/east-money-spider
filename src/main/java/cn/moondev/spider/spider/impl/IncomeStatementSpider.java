@@ -71,8 +71,8 @@ public class IncomeStatementSpider extends FinancialSpider {
         for (IncomeStatement sheet : sheets) {
             sheet.dateType = dateType.value();
             sheet.stockType = StockType.NEEQ.toString();
-            if (Strings.isNullOrEmpty(sheet.securityCode)) {
-                sheet.securityCode = stock;
+            if (Strings.isNullOrEmpty(sheet.stockCode)) {
+                sheet.stockCode = stock;
             }
             incomeStatementMapper.upsert(sheet);
         }

@@ -147,4 +147,6 @@ public class Stock {
     @ExcelColumn(name = "证监会行业(2012)")
     public String industry;
 
+
+
 }

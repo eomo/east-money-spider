@@ -11,7 +11,7 @@
         <result column="eutime" property="eutime"/>
         <result column="security_variety_code" property="securityVarietyCode"/>
         <result column="security_type_code" property="securityTypeCode"/>
-        <result column="security_code" property="securityCode"/>
+        <result column="stock_code" property="stockCode"/>
         <result column="security_full_name" property="securityFullName"/>
         <result column="security_short_name" property="securityShortName"/>
         <result column="security_type" property="securityType"/>
@@ -33,7 +33,7 @@
           eutime,
           security_variety_code,
           security_type_code,
-          security_code,
+          stock_code,
           security_full_name,
           security_short_name,
           security_type,
@@ -52,7 +52,7 @@
             #{item.eutime},
             #{item.securityVarietyCode},
             #{item.securityTypeCode},
-            #{item.securityCode},
+            #{item.stockCode},
             #{item.securityFullName},
             #{item.securityShortName},
             #{item.securityType},
@@ -70,7 +70,7 @@
             eutime = VALUES(eutime),
             security_variety_code = VALUES(security_variety_code),
             security_type_code = VALUES(security_type_code),
-            security_code = VALUES(security_code),
+            stock_code = VALUES(stock_code),
             security_full_name = VALUES(security_full_name),
             security_short_name = VALUES(security_short_name),
             security_type = VALUES(security_type),

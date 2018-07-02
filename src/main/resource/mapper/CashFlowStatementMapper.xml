@@ -5,7 +5,7 @@
     <resultMap id="cashFlowMap" type="cn.moondev.spider.model.CashFlowStatement">
         <id column="id" property="id"/>
         <result column="date_type" property="dateType"/>
-        <result column="security_code" property="securityCode"/>
+        <result column="stock_code" property="stockCode"/>
         <result column="report_date" property="reportDate"/>
         <result column="stock_type" property="stockType"/>
         <result column="cash_in_sale_good_labour_service" property="cashInSaleGoodLabourService"/>
@@ -129,7 +129,7 @@
 
     <insert id="upsert">
         INSERT INTO t_cash_flow_statement(
-        security_code,
+        stock_code,
         report_date,
         date_type,
         stock_type,
@@ -251,7 +251,7 @@
         money_equivalent_balance,
         money_equivalent_net_add
 ) VALUES (
-        #{item.securityCode},
+        #{item.stockCode},
         #{item.reportDate},
         #{item.dateType},
         #{item.stockType},

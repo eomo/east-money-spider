@@ -11,7 +11,9 @@ import java.util.List;
 public class CodeGen {
 
     public static void main(String[] args) throws Exception {
-        insertSQL("Company");
+        createTableSQL("NeeqPevcInvest");
+        mybatisMap();
+        insertSQL("NeeqPevcInvest");
     }
 
     /**
@@ -20,10 +22,10 @@ public class CodeGen {
      * @param javaName
      * @throws Exception
      */
-    public static void createTableSQL() throws Exception {
+    public static void createTableSQL(String javaName) throws Exception {
         List<ModelClassInfo> cdxList = getModelList();
         StringBuilder sb = new StringBuilder();
-        sb.append("CREATE TABLE ").append("t_company").append("(").append("\n");
+        sb.append("CREATE TABLE ").append("t" + mysqlField(javaName)).append("(").append("\n");
         sb.append("        id BIGINT PRIMARY KEY AUTO_INCREMENT,");
         for (ModelClassInfo cdx : cdxList) {
             sb.append("        ");
@@ -77,7 +79,7 @@ public class CodeGen {
     }
 
     public static List<ModelClassInfo> getModelList() throws Exception {
-        File file = new File("D:\\WORKSPACE\\github.com\\east-money-spider\\src\\main\\java\\cn\\moondev\\spider\\model\\Company.java");
+        File file = new File("/Users/Moon/WorkSpace/github.com/east-money-spider/src/main/java/cn/moondev/spider/model/NeeqPevcInvest.java");
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line;
         List<ModelClassInfo> cdxList = Lists.newArrayList();

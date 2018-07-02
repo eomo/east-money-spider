@@ -3,6 +3,7 @@ package cn.moondev.spider.model;
 import cn.moondev.spider.utils.NumberUtils;
 import cn.moondev.spider.utils.StringUtils;
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.base.Strings;
 
 /**
  * 利润表(损益表)
@@ -13,7 +14,7 @@ public class IncomeStatement {
     public String dateType;
 
     // 股票代码
-    public String securityCode;
+    public String stockCode;
 
     // 日期
     public String reportDate;
@@ -220,7 +221,10 @@ public class IncomeStatement {
     }
 
     public IncomeStatement(JSONObject json) {
-        this.securityCode = json.getString("SECURITYCODE");
+        this.stockCode = json.getString("SECURITYCODE");
+        if (!Strings.isNullOrEmpty(this.stockCode)) {
+            this.stockCode = this.stockCode.substring(0, 6);
+        }
         this.reportDate = StringUtils.convertReportDate(json.getString("REPORTDATE"));
         this.grossRevenue = NumberUtils.convertCent(json.getString("TOTALOPERATEREVE"));
         this.operatingReceipt = NumberUtils.convertCent(json.getString("OPERATEREVE"));

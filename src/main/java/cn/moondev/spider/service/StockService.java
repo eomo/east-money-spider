@@ -3,7 +3,6 @@ package cn.moondev.spider.service;
 import cn.moondev.framework.provider.excel.utils.ImportExcelUtils;
 import cn.moondev.spider.mapper.StockMapper;
 import cn.moondev.spider.model.Stock;
-import cn.moondev.spider.spider.FinancialSpider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,12 +41,12 @@ public class StockService {
                 if (field.getType().equals(String.class)) {
                     Object object = field.get(stock);
                     if (Objects.isNull(object)) {
-                        field.set(stock,"");
+                        field.set(stock, "");
                     }
                 } else if (field.getType().equals(Float.class)) {
                     Object object = field.get(stock);
                     if (Objects.isNull(object)) {
-                        field.set(stock,Float.valueOf("0"));
+                        field.set(stock, Float.valueOf("0"));
                     }
                 }
             }

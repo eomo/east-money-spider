@@ -7,7 +7,7 @@ CREATE TABLE `t_prospectus`(
     eutime varchar(32) NOT NULL DEFAULT '',
     security_variety_code varchar(32) NOT NULL DEFAULT '',
     security_type_code varchar(32) NOT NULL DEFAULT '',
-    security_code varchar(16) NOT NULL DEFAULT '',
+    stock_code varchar(16) NOT NULL DEFAULT '',
     security_full_name varchar(32) NOT NULL DEFAULT '',
     security_short_name varchar(32) NOT NULL DEFAULT '',
     security_type varchar(32) NOT NULL DEFAULT '',
@@ -18,12 +18,12 @@ CREATE TABLE `t_prospectus`(
     url varchar(255) NOT NULL DEFAULT '',
     direct_url varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`info_code`),
-  KEY index_security_code (`security_code`)
+  KEY index_security_code (`stock_code`)
 )ENGINE=INNODB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE t_balance_sheet(
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
-		security_code VARCHAR(16) NOT NULL DEFAULT '' COMMENT '股票代码',
+		stock_code VARCHAR(16) NOT NULL DEFAULT '' COMMENT '股票代码',
     report_date VARCHAR(32) NOT NULL DEFAULT '' COMMENT '日期',
     date_type CHAR(1) NOT NULL DEFAULT '' COMMENT '日期类型:R(报告周期),Y(年),M(月)',
     stock_type VARCHAR(8) NOT NULL DEFAULT '' COMMENT '股票类型',
@@ -149,12 +149,12 @@ CREATE TABLE t_balance_sheet(
     sh_equity_balance BIGINT NOT NULL DEFAULT 0 COMMENT '股东权益平衡项目(新三板)',
     lish_equity_other BIGINT NOT NULL DEFAULT 0 COMMENT '负债和股东权益其他项目(新三板)',
     lish_equity_balance BIGINT NOT NULL DEFAULT 0 COMMENT '负债和股东权益平衡项目(新三板)',
-    UNIQUE KEY unique_index_code_date(`security_code`,`report_date`,`date_type`)
+    UNIQUE KEY unique_index_code_date(`stock_code`,`report_date`,`date_type`)
 )ENGINE=INNODB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE t_cash_flow_statement(
         id BIGINT PRIMARY KEY AUTO_INCREMENT,
-        security_code VARCHAR(16) NOT NULL DEFAULT '' COMMENT '股票代码',
+        stock_code VARCHAR(16) NOT NULL DEFAULT '' COMMENT '股票代码',
         report_date VARCHAR(32) NOT NULL DEFAULT '' COMMENT '日期',
         date_type CHAR(1) NOT NULL DEFAULT '' COMMENT '日期类型:R(报告周期),Y(年),M(月)',
         stock_type VARCHAR(8) NOT NULL DEFAULT '' COMMENT '股票类型',
@@ -275,12 +275,12 @@ CREATE TABLE t_cash_flow_statement(
         money_equivalent_other BIGINT NOT NULL DEFAULT 0 COMMENT '现金及现金等价物净增加额其他项目(新三板)',
         money_equivalent_balance BIGINT NOT NULL DEFAULT 0 COMMENT '现金及现金等价物净增加额平衡项目(新三板)',
         money_equivalent_net_add BIGINT NOT NULL DEFAULT 0 COMMENT '现金及现金等价物的净增加额(新三板)',
-        UNIQUE KEY unique_index_code_date(`security_code`,`report_date`,`date_type`)
+        UNIQUE KEY unique_index_code_date(`stock_code`,`report_date`,`date_type`)
 )ENGINE=INNODB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE t_income_statement(
         id BIGINT PRIMARY KEY AUTO_INCREMENT,
-        security_code VARCHAR(16) NOT NULL DEFAULT '' COMMENT '股票代码',
+        stock_code VARCHAR(16) NOT NULL DEFAULT '' COMMENT '股票代码',
         report_date VARCHAR(32) NOT NULL DEFAULT '' COMMENT '日期',
         date_type CHAR(1) NOT NULL DEFAULT '' COMMENT '日期类型:R(报告周期),Y(年),M(月)',
         stock_type VARCHAR(8) NOT NULL DEFAULT '' COMMENT '股票类型',
@@ -340,7 +340,7 @@ CREATE TABLE t_income_statement(
         sumci BIGINT NOT NULL DEFAULT 0 COMMENT '综合收益总额',
         parent_compay_ci BIGINT NOT NULL DEFAULT 0 COMMENT '归属于母公司所有者的综合收益总额',
         minority_shareholder_ci BIGINT NOT NULL DEFAULT 0 COMMENT '归属于少数股东的综合收益总额',
-        UNIQUE KEY unique_index_code_date(`security_code`,`report_date`,`date_type`)
+        UNIQUE KEY unique_index_code_date(`stock_code`,`report_date`,`date_type`)
 )ENGINE=INNODB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE t_stock(
@@ -440,4 +440,20 @@ CREATE TABLE t_apply_listing_stat(
         industry VARCHAR(32) NOT NULL DEFAULT '' COMMENT '行业',
         apply_listing_date VARCHAR(16) NOT NULL DEFAULT '' COMMENT '申请挂牌日',
         UNIQUE KEY unique_index_name(`company_name`)
+)ENGINE=INNODB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE t_neeq_pevc_invest(
+        id BIGINT PRIMARY KEY AUTO_INCREMENT,
+        stock_code VARCHAR(8) NOT NULL DEFAULT '' COMMENT '证券代码',
+        stock_name VARCHAR(64) NOT NULL DEFAULT '' COMMENT '证券名称',
+        listing_date VARCHAR(16) NOT NULL DEFAULT '' COMMENT '挂牌日期',
+        invest_num BIGINT NOT NULL DEFAULT 0 COMMENT '投资机构家数',
+        total_invest_amount FLOAT NOT NULL DEFAULT 0 COMMENT '累计投资金额(万元)',
+        trade_way VARCHAR(16) NOT NULL DEFAULT '' COMMENT '交易方式',
+        general_capital FLOAT NOT NULL DEFAULT 0 COMMENT '股份总量(万股)',
+        latest_market_value FLOAT NOT NULL DEFAULT 0 COMMENT '最新市值(万元)',
+        latest_operating_receipt FLOAT NOT NULL DEFAULT 0 COMMENT '营业收入(最新财年)',
+        profit FLOAT NOT NULL DEFAULT 0 COMMENT '利润率(最新财年)',
+        industry VARCHAR(64) NOT NULL DEFAULT '' COMMENT '所属证监会行业',
+        UNIQUE KEY unique_index_code(`stock_code`)
 )ENGINE=INNODB DEFAULT CHARSET=utf8mb4;

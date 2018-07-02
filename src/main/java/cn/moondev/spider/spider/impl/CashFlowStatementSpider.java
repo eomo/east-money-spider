@@ -71,8 +71,8 @@ public class CashFlowStatementSpider extends FinancialSpider {
         for (CashFlowStatement sheet : sheets) {
             sheet.dateType = dateType.value();
             sheet.stockType = StockType.NEEQ.toString();
-            if (Strings.isNullOrEmpty(sheet.securityCode)) {
-                sheet.securityCode = stock;
+            if (Strings.isNullOrEmpty(sheet.stockCode)) {
+                sheet.stockCode = stock;
             }
             cashFlowStatementMapper.upsert(sheet);
         }

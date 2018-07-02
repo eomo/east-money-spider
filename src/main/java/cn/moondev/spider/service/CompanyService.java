@@ -3,11 +3,12 @@ package cn.moondev.spider.service;
 import cn.moondev.framework.provider.excel.utils.ImportExcelUtils;
 import cn.moondev.spider.mapper.ApplyListingStatMapper;
 import cn.moondev.spider.mapper.CompanyMapper;
+import cn.moondev.spider.mapper.NeeqPevcInvestMapper;
 import cn.moondev.spider.mapper.StockMapper;
 import cn.moondev.spider.model.ApplyListingStat;
+import cn.moondev.spider.model.NeeqPevcInvest;
 import cn.moondev.spider.model.Stock;
 import cn.moondev.spider.spider.CompanySpider;
-import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 公司简介
@@ -33,22 +35,24 @@ public class CompanyService {
     private StockMapper stockMapper;
     @Autowired
     private ApplyListingStatMapper applyListingStatMapper;
+    @Autowired
+    private NeeqPevcInvestMapper neeqPevcInvestMapper;
 
     /**
      * 从东方财富网抓取财务分析数据
      */
     public void crawlCompanyDataFromEastMoney() {
-        List<Stock> stocks = stockMapper.getStockNotInCompany();
+        List<Stock> stocks = stockMapper.getStockNotInOtherBuiness("t_company");
         for (Stock stock : stocks) {
-            companySpider.spider(stock.stockCode.substring(0, 6));
+            companySpider.spider(stock.stockCode);
         }
     }
 
     /**
      * 从Excel导入新三板申请挂牌日数据
      */
-    public void importListingDateFromExcel(String excelFilePath) {
-        List<ApplyListingStat> models = ImportExcelUtils.doImport(excelFilePath,ApplyListingStat.class);
+    public void importListingDateFromExcel(String path) {
+        List<ApplyListingStat> models = ImportExcelUtils.doImport(path, ApplyListingStat.class);
         List<ApplyListingStat> dbs = applyListingStatMapper.getAllListingDate();
         models.removeAll(dbs);
         if (!CollectionUtils.isEmpty(models)) {
@@ -57,6 +61,29 @@ public class CompanyService {
                     applyListingStatMapper.upsert(model);
                 }
             }
+        }
+    }
+
+    /**
+     * 从Excel导入PEVC投资信息
+     */
+    public void importPEVCInvestDataFromExcel(String path) {
+        List<NeeqPevcInvest> models = ImportExcelUtils.doImport(path, NeeqPevcInvest.class);
+        for (NeeqPevcInvest model : models) {
+            model.stockCode = model.stockCode.substring(0,6);
+            if (Objects.isNull(model.totalInvestAmount)) {
+                model.totalInvestAmount = Float.valueOf("0");
+            }
+            if (Objects.isNull(model.latestMarketValue)) {
+                model.latestMarketValue = Float.valueOf("0");
+            }
+            if (Objects.isNull(model.generalCapital)) {
+                model.generalCapital = Float.valueOf("0");
+            }
+            if (Objects.isNull(model.latestOperatingReceipt)) {
+                model.latestOperatingReceipt = Float.valueOf("0");
+            }
+            neeqPevcInvestMapper.upsert(model);
         }
     }
 }

@@ -151,7 +151,7 @@ public class Company {
 
     public Company(Map<String, String> map) {
         this.stockType = "NEEQ";
-        this.stockCode = map.get("证券代码");
+        this.stockCode = map.get("证券代码").substring(0,6);;
         this.listingDate = map.get("挂牌日期");
         this.transfer = map.get("转让方式");
         this.circulation = map.get("总股本(万股)");
