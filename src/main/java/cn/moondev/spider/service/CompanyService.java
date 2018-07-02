@@ -74,7 +74,7 @@ public class CompanyService {
 
     public void test() {
         List<ApplyListingStat> stats = applyListingStatMapper.getAllListingDate();
-        for (ApplyListingStat stat : stats) {
+        circle: for (ApplyListingStat stat : stats) {
             if (!Strings.isNullOrEmpty(stat.stockCode)) {
                 continue;
             }
@@ -89,12 +89,12 @@ public class CompanyService {
                     if (company.companyName.equalsIgnoreCase(stat.companyName)) {
                         stat.stockCode = company.stockCode;
                         applyListingStatMapper.updateStockCode(stat);
-                        break;
+                        continue circle;
                     }
                     if (company.companyName.substring(2).equalsIgnoreCase(stat.companyName)) {
                         stat.stockCode = company.stockCode;
                         applyListingStatMapper.updateStockCode(stat);
-                        break;
+                        continue circle;
                     }
                     companyName = company.companyName.substring(2);
                     if (companyName.startsWith("省") || companyName.startsWith("市")) {
@@ -103,32 +103,22 @@ public class CompanyService {
                     if (companyName.equalsIgnoreCase(stat.companyName)) {
                         stat.stockCode = company.stockCode;
                         applyListingStatMapper.updateStockCode(stat);
-                        break;
+                        continue circle;
                     }
                     if (stat.companyName.length() >=6 && companyName.substring(0,6).equalsIgnoreCase(stat.companyName.substring(0,6))) {
                         stat.stockCode = company.stockCode;
                         applyListingStatMapper.updateStockCode(stat);
-                        break;
+                        continue circle;
                     }
                     if (stat.companyName.length() >=5 && companyName.substring(0,5).equalsIgnoreCase(stat.companyName.substring(0,5))) {
                         stat.stockCode = company.stockCode;
                         applyListingStatMapper.updateStockCode(stat);
-                        break;
+                        continue circle;
                     }
                     if (companyName.substring(0,4).equalsIgnoreCase(stat.companyName.substring(0,4))) {
                         stat.stockCode = company.stockCode;
                         applyListingStatMapper.updateStockCode(stat);
-                        break;
-                    }
-                    if (companyName.substring(0,3).equalsIgnoreCase(stat.companyName.substring(0,3))) {
-                        stat.stockCode = company.stockCode;
-                        applyListingStatMapper.updateStockCode(stat);
-                        break;
-                    }
-                    if (companyName.substring(0,2).equalsIgnoreCase(stat.companyName.substring(0,2))) {
-                        stat.stockCode = company.stockCode;
-                        applyListingStatMapper.updateStockCode(stat);
-                        break;
+                        continue circle;
                     }
                 }
             }

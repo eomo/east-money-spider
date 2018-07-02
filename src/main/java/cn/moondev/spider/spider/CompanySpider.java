@@ -43,7 +43,7 @@ public class CompanySpider implements Spider {
                 LOG.error("抓取公司信息失败,stock={}", stock, e);
             }
         }
-        LOG.info("抓取公司成功,stock={}", stock);
+        LOG.info("抓取公司基本信息成功,stock={}", stock);
     }
 
     /**

@@ -11,9 +11,9 @@ import java.util.List;
 public class CodeGen {
 
     public static void main(String[] args) throws Exception {
-        createTableSQL("NeeqPevcInvest");
+        createTableSQL("CompanyBaseInfo");
         mybatisMap();
-        insertSQL("NeeqPevcInvest");
+        insertSQL("CompanyBaseInfo");
     }
 
     /**
@@ -79,7 +79,7 @@ public class CodeGen {
     }
 
     public static List<ModelClassInfo> getModelList() throws Exception {
-        File file = new File("/Users/Moon/WorkSpace/github.com/east-money-spider/src/main/java/cn/moondev/spider/model/NeeqPevcInvest.java");
+        File file = new File("D:\\WORKSPACE\\github.com\\east-money-spider\\src\\main\\java\\cn\\moondev\\spider\\model\\CompanyBaseInfo.java");
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line;
         List<ModelClassInfo> cdxList = Lists.newArrayList();

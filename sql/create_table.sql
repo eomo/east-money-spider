@@ -458,3 +458,37 @@ CREATE TABLE t_neeq_pevc_invest(
         industry VARCHAR(64) NOT NULL DEFAULT '' COMMENT '所属证监会行业',
         UNIQUE KEY unique_index_code(`stock_code`)
 )ENGINE=INNODB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE t_company_base_info(
+        id BIGINT PRIMARY KEY AUTO_INCREMENT,
+        stock_code VARCHAR(16) NOT NULL DEFAULT '' COMMENT '代码',
+        company_name VARCHAR(64) NOT NULL DEFAULT '' COMMENT '名称',
+        listing_date VARCHAR(16) NOT NULL DEFAULT '' COMMENT '挂牌日期',
+        first_deal_date VARCHAR(16) NOT NULL DEFAULT '' COMMENT '首次成交日',
+        transaction_mode VARCHAR(16) NOT NULL DEFAULT '' COMMENT '交易方式',
+        share_holder_num BIGINT NOT NULL DEFAULT 0 COMMENT '股东户数',
+        full_name VARCHAR(64) NOT NULL DEFAULT '' COMMENT '公司全称',
+        org_type VARCHAR(16) NOT NULL DEFAULT '' COMMENT '组织形式',
+        introduce VARCHAR(2048) NOT NULL DEFAULT '' COMMENT '公司介绍',
+        main_business VARCHAR(2048) NOT NULL DEFAULT '' COMMENT '主营业务',
+        registered_capital Float NOT NULL DEFAULT 0 COMMENT '注册资本(亿元)',
+        limited_company_date VARCHAR(16) NOT NULL DEFAULT '' COMMENT '有限公司设立日',
+        common_law_company_date VARCHAR(16) NOT NULL DEFAULT '' COMMENT '股份公司成立日',
+        legal_person VARCHAR(8) NOT NULL DEFAULT '' COMMENT '法人代表',
+        info_discloser VARCHAR(8) NOT NULL DEFAULT '' COMMENT '信息披露人',
+        actual_controller VARCHAR(64) NOT NULL DEFAULT '' COMMENT '实际控制人',
+        ultimate_controller VARCHAR(64) NOT NULL DEFAULT '' COMMENT '最终控制人',
+        area VARCHAR(8) NOT NULL DEFAULT '' COMMENT '地区',
+        city VARCHAR(8) NOT NULL DEFAULT '' COMMENT '城市',
+        park VARCHAR(32) NOT NULL DEFAULT '' COMMENT '所属园区',
+        register_address VARCHAR(128) NOT NULL DEFAULT '' COMMENT '注册地址',
+        contacts VARCHAR(32) NOT NULL DEFAULT '' COMMENT '联系电话',
+        fax VARCHAR(32) NOT NULL DEFAULT '' COMMENT '传真',
+        website VARCHAR(64) NOT NULL DEFAULT '' COMMENT '公司网址',
+        supervision VARCHAR(64) NOT NULL DEFAULT '' COMMENT '主办券商(持续督导)',
+        recommend VARCHAR(64) NOT NULL DEFAULT '' COMMENT '主办券商(推荐挂牌)',
+        accounting_firm VARCHAR(64) NOT NULL DEFAULT '' COMMENT '会计师事务所',
+        legal_adviser VARCHAR(64) NOT NULL DEFAULT '' COMMENT '法律顾问',
+        industry VARCHAR(32) NOT NULL DEFAULT '' COMMENT '证监会行业',
+        UNIQUE KEY unique_index_code(`stock_code`)
+)ENGINE=INNODB DEFAULT CHARSET=utf8mb4;

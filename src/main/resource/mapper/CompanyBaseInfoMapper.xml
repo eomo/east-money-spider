@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.moondev.spider.mapper.CompanyBaseInfoMapper">
+
+    <resultMap id="companyMap" type="cn.moondev.spider.model.CompanyBaseInfo">
+        <id column="id" property="id"/>
+        <result column="stock_code" property="stockCode"/>
+        <result column="company_name" property="companyName"/>
+        <result column="listing_date" property="listingDate"/>
+        <result column="first_deal_date" property="firstDealDate"/>
+        <result column="transaction_mode" property="transactionMode"/>
+        <result column="share_holder_num" property="shareHolderNum"/>
+        <result column="full_name" property="fullName"/>
+        <result column="org_type" property="orgType"/>
+        <result column="introduce" property="introduce"/>
+        <result column="main_business" property="mainBusiness"/>
+        <result column="registered_capital" property="registeredCapital"/>
+        <result column="limited_company_date" property="limitedCompanyDate"/>
+        <result column="common_law_company_date" property="commonLawCompanyDate"/>
+        <result column="legal_person" property="legalPerson"/>
+        <result column="info_discloser" property="infoDiscloser"/>
+        <result column="actual_controller" property="actualController"/>
+        <result column="ultimate_controller" property="ultimateController"/>
+        <result column="area" property="area"/>
+        <result column="city" property="city"/>
+        <result column="park" property="park"/>
+        <result column="register_address" property="registerAddress"/>
+        <result column="contacts" property="contacts"/>
+        <result column="fax" property="fax"/>
+        <result column="website" property="website"/>
+        <result column="supervision" property="supervision"/>
+        <result column="recommend" property="recommend"/>
+        <result column="accounting_firm" property="accountingFirm"/>
+        <result column="legal_adviser" property="legalAdviser"/>
+        <result column="industry" property="industry"/>
+    </resultMap>
+
+    <insert id="upsert">
+        INSERT INTO t_company_base_info(
+        stock_code,
+        company_name,
+        listing_date,
+        first_deal_date,
+        transaction_mode,
+        share_holder_num,
+        full_name,
+        org_type,
+        introduce,
+        main_business,
+        registered_capital,
+        limited_company_date,
+        common_law_company_date,
+        legal_person,
+        info_discloser,
+        actual_controller,
+        ultimate_controller,
+        area,
+        city,
+        park,
+        register_address,
+        contacts,
+        fax,
+        website,
+        supervision,
+        recommend,
+        accounting_firm,
+        legal_adviser,
+        industry
+) VALUES (
+        #{item.stockCode},
+        #{item.companyName},
+        #{item.listingDate},
+        #{item.firstDealDate},
+        #{item.transactionMode},
+        #{item.shareHolderNum},
+        #{item.fullName},
+        #{item.orgType},
+        #{item.introduce},
+        #{item.mainBusiness},
+        #{item.registeredCapital},
+        #{item.limitedCompanyDate},
+        #{item.commonLawCompanyDate},
+        #{item.legalPerson},
+        #{item.infoDiscloser},
+        #{item.actualController},
+        #{item.ultimateController},
+        #{item.area},
+        #{item.city},
+        #{item.park},
+        #{item.registerAddress},
+        #{item.contacts},
+        #{item.fax},
+        #{item.website},
+        #{item.supervision},
+        #{item.recommend},
+        #{item.accountingFirm},
+        #{item.legalAdviser},
+        #{item.industry}
+)ON DUPLICATE KEY UPDATE
+        company_name = VALUES(company_name),
+        listing_date = VALUES(listing_date),
+        first_deal_date = VALUES(first_deal_date),
+        transaction_mode = VALUES(transaction_mode),
+        share_holder_num = VALUES(share_holder_num),
+        full_name = VALUES(full_name),
+        org_type = VALUES(org_type),
+        introduce = VALUES(introduce),
+        main_business = VALUES(main_business),
+        registered_capital = VALUES(registered_capital),
+        limited_company_date = VALUES(limited_company_date),
+        common_law_company_date = VALUES(common_law_company_date),
+        legal_person = VALUES(legal_person),
+        info_discloser = VALUES(info_discloser),
+        actual_controller = VALUES(actual_controller),
+        ultimate_controller = VALUES(ultimate_controller),
+        area = VALUES(area),
+        city = VALUES(city),
+        park = VALUES(park),
+        register_address = VALUES(register_address),
+        contacts = VALUES(contacts),
+        fax = VALUES(fax),
+        website = VALUES(website),
+        supervision = VALUES(supervision),
+        recommend = VALUES(recommend),
+        accounting_firm = VALUES(accounting_firm),
+        legal_adviser = VALUES(legal_adviser),
+        industry = VALUES(industry)
+    </insert>
+</mapper>
