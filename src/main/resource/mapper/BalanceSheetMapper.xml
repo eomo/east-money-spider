@@ -511,4 +511,19 @@
         lish_equity_other = VALUES(lish_equity_other),
         lish_equity_balance = VALUES(lish_equity_balance)
     </insert>
+
+    <select id="getBalanceByReportDateType" resultMap="incomeMap">
+        SELECT
+            stock_code,
+            report_date,
+            sum_asset,
+            sumshequity
+        FROM
+            t_balance_sheet
+        WHERE
+            date_type = #{dateType}
+            AND stock_code = #{stockCode}
+            AND report_date = #{reportDate}
+            LIMIT 1;
+    </select>
 </mapper>

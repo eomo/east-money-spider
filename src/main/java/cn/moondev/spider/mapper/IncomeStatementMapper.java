@@ -8,4 +8,8 @@ import org.apache.ibatis.annotations.Param;
 public interface IncomeStatementMapper {
 
     void upsert(@Param("item") IncomeStatement incomeStatement);
+
+    IncomeStatement getIncomeByReportDateType(@Param("dateType") String dateType,
+                                              @Param("stockCode") String stockCode,
+                                              @Param("reportDate") String reportDate);
 }

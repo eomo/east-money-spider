@@ -2,11 +2,13 @@ package cn.moondev.spider.service;
 
 import cn.moondev.framework.provider.excel.utils.ImportExcelUtils;
 import cn.moondev.spider.mapper.ApplyListingStatMapper;
+import cn.moondev.spider.mapper.CompanyBaseInfoMapper;
 import cn.moondev.spider.mapper.CompanyMapper;
 import cn.moondev.spider.mapper.NeeqPevcInvestMapper;
 import cn.moondev.spider.mapper.StockMapper;
 import cn.moondev.spider.model.ApplyListingStat;
 import cn.moondev.spider.model.Company;
+import cn.moondev.spider.model.CompanyBaseInfo;
 import cn.moondev.spider.model.NeeqPevcInvest;
 import cn.moondev.spider.model.Stock;
 import cn.moondev.spider.spider.CompanySpider;
@@ -38,6 +40,8 @@ public class CompanyService {
     private ApplyListingStatMapper applyListingStatMapper;
     @Autowired
     private NeeqPevcInvestMapper neeqPevcInvestMapper;
+    @Autowired
+    private CompanyBaseInfoMapper companyBaseInfoMapper;
 
     /**
      * 从东方财富网抓取财务分析数据
@@ -62,6 +66,13 @@ public class CompanyService {
                     applyListingStatMapper.upsert(model);
                 }
             }
+        }
+    }
+
+    public void  importCompanyBaseInfo(String path) {
+        List<CompanyBaseInfo> companyBaseInfos = ImportExcelUtils.doImport(path,CompanyBaseInfo.class);
+        for (CompanyBaseInfo company : companyBaseInfos) {
+            companyBaseInfoMapper.upsert(company);
         }
     }
 

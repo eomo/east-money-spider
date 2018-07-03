@@ -248,4 +248,20 @@
         parent_compay_ci = VALUES(parent_compay_ci),
         minority_shareholder_ci = VALUES(minority_shareholder_ci)
     </insert>
+
+    <select id="getIncomeByReportDateType" resultMap="incomeMap">
+        SELECT
+            stock_code,
+            report_date,
+            gross_revenue,
+            sum_profit,
+            net_profit
+        FROM
+            t_income_statement
+        WHERE
+            date_type = #{dateType}
+            AND stock_code = #{stockCode}
+            AND report_date = #{reportDate}
+            LIMIT 1;
+    </select>
 </mapper>

@@ -8,4 +8,8 @@ import org.apache.ibatis.annotations.Param;
 public interface BalanceSheetMapper {
 
     void upsert(@Param("item") BalanceSheet balanceSheet);
+
+    BalanceSheet getBalanceByReportDateType(@Param("dateType") String dateType,
+                                            @Param("stockCode") String stockCode,
+                                            @Param("reportDate") String reportDate);
 }
