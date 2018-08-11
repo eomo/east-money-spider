@@ -5,15 +5,14 @@ import cn.moondev.spider.service.FinancialService;
 import cn.moondev.spider.service.ProspectusService;
 import cn.moondev.spider.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
 import java.io.File;
 import java.io.IOException;
 
-@RestController
+@Controller
 @RequestMapping("/v1/manual")
 public class ManualController {
 
@@ -51,8 +50,7 @@ public class ManualController {
 
     @RequestMapping(value = "/support", method = RequestMethod.GET)
     public String support() {
-//        companyService.supplyStockCode4ListingDate();
-        companyService.test();
+        stockService.test();
         return "success";
     }
 }

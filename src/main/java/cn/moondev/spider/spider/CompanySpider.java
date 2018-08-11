@@ -15,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
 
 import java.io.IOException;
 import java.util.List;
@@ -60,11 +59,9 @@ public class CompanySpider implements Spider {
         request.requestHeader.put("X-Requested-With", "XMLHttpRequest");
         request.requestParams.put("code", "sz" + stock);
         List<Company> companies = okHttpOperations.syncRequest(request, new CompanyHandler(StockType.GEM.toString()));
-        if (!CollectionUtils.isEmpty(companies)) {
             for (Company company : companies) {
                 companyMapper.upsert(company);
             }
-        }
     }
 
     /**
@@ -79,10 +76,8 @@ public class CompanySpider implements Spider {
         Document doc = Jsoup.connect(url).get();
         map.putAll(parse2Map(doc, "ul.company-page-left > li"));
         map.putAll(parse2Map(doc, "ul.company-page-right > li"));
-        if (!CollectionUtils.isEmpty(map)) {
             Company company = new Company(map);
             companyMapper.upsert(company);
-        }
     }
 
     private Map<String, String> parse2Map(Document doc, String tag) {

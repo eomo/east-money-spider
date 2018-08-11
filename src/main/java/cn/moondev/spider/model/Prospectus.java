@@ -1,6 +1,5 @@
 package cn.moondev.spider.model;
 
-import cn.moondev.framework.utils.StringUtils;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
@@ -34,7 +33,7 @@ public class Prospectus {
 
     public Prospectus(JSONObject notice) {
         this.noticeDate = notice.getString("NOTICEDATE");
-        this.attachSize = StringUtils.null2Empty(notice.getString("ATTACHSIZE"));
+//        this.attachSize = StringUtils.null2Empty(notice.getString("ATTACHSIZE"));
         this.endDate = notice.getString("ENDDATE");
         this.noticeTitle = notice.getString("NOTICETITLE");
         this.infoCode = notice.getString("INFOCODE");

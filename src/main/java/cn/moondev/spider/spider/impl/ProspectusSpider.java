@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -36,9 +35,9 @@ public class ProspectusSpider implements Spider {
         request.requestParams.put("PageSize", "50");
         request.requestFormat = Format.PLAIN;
         List<Prospectus> prospectuses = okHttpOperations.syncRequest(request, new ProspectusHandler());
-        if (CollectionUtils.isEmpty(prospectuses)) {
-            LOG.info("未抓取到{}的招股书数据，请稍后检查是否存错误或者数据", stock);
-        }
+//        if (CollectionUtils.isEmpty(prospectuses)) {
+//            LOG.info("未抓取到{}的招股书数据，请稍后检查是否存错误或者数据", stock);
+//        }
         for (Prospectus prospectus : prospectuses) {
             prospectusMapper.upsertProspectusByInfoCode(prospectus);
         }

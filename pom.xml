@@ -15,6 +15,7 @@
         <java.version>1.8</java.version>
         <pdfbox.version>2.0.9</pdfbox.version>
         <jsoup.version>1.11.3</jsoup.version>
+        <easypoi.version>2.3.1</easypoi.version>
     </properties>
 
     <dependencies>
@@ -39,6 +40,23 @@
             <artifactId>jsoup</artifactId>
             <version>${jsoup.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.jeecg</groupId>
+            <artifactId>easypoi-base</artifactId>
+            <version>${easypoi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jeecg</groupId>
+            <artifactId>easypoi-web</artifactId>
+            <version>${easypoi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jeecg</groupId>
+            <artifactId>easypoi-annotation</artifactId>
+            <version>${easypoi.version}</version>
+        </dependency>
+
 
         <!-- 单元测试 -->
         <dependency>
